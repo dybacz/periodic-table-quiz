@@ -16,10 +16,14 @@
     background-color: black;
     width: 40px;
     height: 50px;
-    margin: 1px 0 0 1px;
-    padding: 1px 0 0 1px;
-    overflow: hidden;
-    position: relative;
+    margin: 1px 0 0 0;
+    padding: 1px 0 1px 1px;
+}
+
+.group1 h1, .group2 h1, .group3 h1, .group4 h1, .group5 h1, .group6 h1, .group7 h1, .group8 h1, .group9 h1,
+.group10 h1, .group11 h1, .group12 h1, .group13 h1, .group14 h1, .group15 h1, .group16 h1, .group17 h1, .group18 h1 {
+    margin: 0 1px 0 0;
+    text-align: center;
 }
 
 .element-tile h1 {
@@ -39,7 +43,7 @@
     left: 2px;
 }
 
-.group1 h1, .group2 h1 {
+#He, .group1 h1, .group2 h1 {
     background-color: tomato;
 }
 .group1 {
@@ -116,11 +120,3 @@
     grid-row:10;
 }
 
-.group1 h1, .group2 h1, .group3 h1, .group4 h1, .group5 h1, .group6 h1, .group7 h1, .group8 h1, .group9 h1,
-.group10 h1, .group11 h1, .group12 h1, .group13 h1, .group14 h1, .group15 h1, .group16 h1, .group17 h1, .group18 h1 {
-    margin: 0 1px 1px 0;
-    width: 39px;
-    height: 49px;
-    text-align: center;
-    box-sizing: border-box;
-}
