@@ -7,6 +7,8 @@
 body {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 26% 0 27%;
    }
 
 .information-bar {
@@ -45,6 +47,11 @@ body {
     text-align: left;
 }
 
+.instructions {
+    width: 100%;
+    padding: 20px 0 0 0 ;
+}
+
 .btn {
     text-transform: uppercase;
     color: white;
@@ -69,6 +76,7 @@ body {
 .game-area {    
     background-color: grey;
     padding: 0 10px 10px 0;
+    border: 1px solid black;
 }
 
 
