@@ -99,18 +99,15 @@ body {
     font-size: 1.2em;
 }
 
-.group1 h1, .group2 h1, .group3 h1, .group4 h1, .group5 h1, .group6 h1, .group7 h1, .group8 h1, .group9 h1,
-.group10 h1, .group11 h1, .group12 h1, .group13 h1, .group14 h1, .group15 h1, .group16 h1, .group17 h1, .group18 h1 {
-    margin: 0 1px 0 0;
-    text-align: center;
-    height: 49px;
-}
 
 .element-tile h1 {
+    text-align: center;
+    height: 49px;
     font-size: 1.2em;
     font-weight: 700;
     text-align: center;
     line-height: 50px;
+    margin: 0 1px 1px 0;
 }
 
 .element-tile::after {
@@ -200,3 +197,13 @@ body {
     grid-row:10;
 }
 
+.new-element {
+    background-color: ivory;
+}
+
+
+.new-ele-bdr {
+    position: relative;
+    top: 50px;
+    left: calc(100% / 2 - 26px);
+}

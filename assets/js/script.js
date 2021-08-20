@@ -23,10 +23,9 @@ document.addEventListener("DOMContentLoaded",function() {
 })
 
 
-
 function runQuiz () {
 
-    let elementStyles = document.getElementsByClassName("text-symbol")
+    let elementStyles = document.getElementsByClassName("text-symbol");
     console.log(elementStyles);
 
     for (let elementStyle of elementStyles) {
@@ -34,4 +33,14 @@ function runQuiz () {
         elementStyle.style.backgroundColor = "grey";
     }
 
+    createElement();
+
+}
+
+function createElement() {
+    
+    let createElement = document.createElement('div');
+    createElement.innerHTML = '<h1 class="text-symbol new-element">H</h1>';
+    createElement.classList.add('element-tile', 'new-ele-bdr'); 
+    document.getElementById("question-area").appendChild(createElement); 
 }
