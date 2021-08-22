@@ -66,7 +66,6 @@ function runQuiz () {
 
 function createElement() {
     let newEleName = elementTable[0][0];
-    let newEleNumber = elementTable[0][1];
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
     createElement.innerHTML = `<h1 class="text-symbol new-element">${newEleSym}</h1>`;
@@ -84,7 +83,8 @@ function checkClick (userAnswer, clickedElement) {
     if  (userAnswer === correctAnswer) {
                 alert(`You Clicked the correct element`);
                 console.log();
-                revealElement(clickedElement);           
+                revealElement(clickedElement);
+                incrementScore();           
             } else {
                 alert(`Error! You clicked the incorrect element`);
             }
@@ -106,4 +106,9 @@ function removeElement () {
     let currentElement = document.getElementsByClassName('new-ele-bdr');
     currentElement[0].parentNode.removeChild(currentElement[0]);
     createElement();
+}
+
+function incrementScore () {
+    let oldScore = parseInt(document.getElementById('score').innerText);
+    document.getElementById("score").innerText = ++oldScore;
 }
