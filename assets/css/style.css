@@ -68,15 +68,18 @@ body {
     font-weight: bold;
 }
 
-.btn--green {
-    border-color: green;
+.btn--newgame {
     background-color: green;
     border: 1px solid rgb(0, 202, 0);
 }
 
-.btn--red {
-    border-color: red;
+.btn--help {
     background-color: red;
+    border: 1px solid rgb(255, 68, 68);
+}
+
+.btn--hint {
+    background-color: rgb(255, 244, 88);
     border: 1px solid rgb(255, 68, 68);
 }
 

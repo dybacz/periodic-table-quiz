@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded",function () {
 })
 
 function initiateGame() {
+    
+    let newLives = "5";
+    document.getElementById("lives").innerText = newLives;
 
     for (let element of elements) {
         let eleName = element.getAttribute("element-name");
@@ -38,7 +41,8 @@ function initiateGame() {
             }
         })
     }
-    
+
+
 
     runQuiz();
     
@@ -90,7 +94,7 @@ function createElement() {
     createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name)"";font-size: 0.8em;font-weight: 600;color: #000000;}', 41);
+    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name)"";font-size: 0.7em;font-weight: 600;color: #000000;}', 41);
     console.log (styleSheet);
 
 
@@ -105,6 +109,7 @@ function checkClick (userAnswer, clickedElement) {
                 incrementScore();           
             } else {
                 alert(`Error! You clicked the incorrect element`);
+                decreaseLives();
             }
     }
 
@@ -131,6 +136,21 @@ function incrementScore () {
     document.getElementById("score").innerText = ++oldScore;
 }
 
+function decreaseLives () {
+    let oldLives = parseInt(document.getElementById('lives').innerText);
+    if (oldLives > 1) {
+        document.getElementById("lives").innerText = --oldLives;
+    } else if (oldLives === 1) {
+        document.getElementById("lives").innerText = --oldLives;
+        alert(`You have ran out of lives`);
+        newGame();
+    } else {
+        alert(`You have ran out of lives, Proceed to New Game`);
+        newGame();
+    }
+    }
+
+
 function newGame () {
     elementTable = new Array();
     let currentElement = document.getElementsByClassName('new-ele-bdr');
@@ -139,3 +159,4 @@ function newGame () {
     document.getElementById("score").innerText = newScore;
     initiateGame();
 }
+
