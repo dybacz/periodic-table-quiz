@@ -7,16 +7,20 @@ var styleSheet = document.styleSheets[0];
 
 
 document.addEventListener("DOMContentLoaded",function() {
-
-    
-
     for (let element of elements) {
-
         let eleName = element.getAttribute("element-name");
         let eleNum = element.getAttribute("element-number");
         let eleSym = element.getAttribute("element-symbol");
         addToArray(eleName, eleNum, eleSym);
+
+        element.addEventListener("click", function () {
+            let userAnswer = this.getAttribute("element-number");
+            let clickedElement = this;
+            console.log(clickedElement);
+            checkClick(userAnswer, clickedElement);
+        })
     }
+    
 
     runQuiz();
     
@@ -53,7 +57,7 @@ function runQuiz () {
 
     shuffleArray();
 
-    console.log(elementTable);
+    console.table(elementTable);
     
 
     createElement();
@@ -66,28 +70,40 @@ function createElement() {
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
     createElement.innerHTML = `<h1 class="text-symbol new-element">${newEleSym}</h1>`;
-    createElement.classList.add('new-element', 'new-ele-bdr'); 
+    createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
     styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name) "";font-size: 0.6em;font-weight: bold;color: #000000;position: relative;bottom: 10px;left: -3px;}', 41);
     console.log (styleSheet);
-    checkClick(newEleNumber);
 
 
 }
 
-function checkClick (correctAnswer) {
-    for (let element of elements) {
-        element.addEventListener("click", function () {
-            let userAnswer = this.getAttribute("element-number");
-            if  (userAnswer === correctAnswer) {
+function checkClick (userAnswer, clickedElement) {
+    let correctAnswer = elementTable[0][1];
+    if  (userAnswer === correctAnswer) {
                 alert(`You Clicked the correct element`);
                 console.log();
+                revealElement(clickedElement);           
             } else {
                 alert(`Error! You clicked the incorrect element`);
             }
-        })
     }
 
+function revealElement (clickedElement) {
+    let eleSym = clickedElement.getAttribute("element-symbol");
+    clickedElement.innerHTML = `<h1 class="text-symbol">${eleSym}</h1>`;
+    clearAnswer();
 }
 
+function clearAnswer () {
+    elementTable.splice(0, 1);
+    console.table(elementTable);
+    removeElement();
+}
+
+function removeElement () {
+    let currentElement = document.getElementsByClassName('new-ele-bdr');
+    currentElement[0].parentNode.removeChild(currentElement[0]);
+    createElement();
+}
