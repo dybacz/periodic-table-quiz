@@ -36,6 +36,8 @@ function initiateGame() {
         button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "new-game") {
                 newGame();
+            } else if (this.getAttribute("data-type") === "more-lives"){
+                moreLives();
             } else {
                 let gameType = this.getAttribute("help");
             }
@@ -160,3 +162,16 @@ function newGame () {
     initiateGame();
 }
 
+function moreLives () {
+    let currentLives = parseInt(document.getElementById('lives').innerText);
+    let currentScore = parseInt(document.getElementById('score').innerText);
+
+    if (currentScore > 1) {
+        document.getElementById("score").innerText = currentScore - 2;
+        document.getElementById("lives").innerText = ++currentLives;
+    } else if (currentScore === 1) {
+        alert(`You are unable to buy more lives, you have only ${currentScore} point to spend`)
+    }  else {
+        alert(`You are unable to buy more lives, you have ${currentScore} points to spend`)
+    }
+}

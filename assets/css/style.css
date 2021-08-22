@@ -22,10 +22,7 @@ body {
     clear: both;
 }
 
-.controls-area {
-    float:right;
-    padding: 10px 0 0 0;
-}
+
 .question-area {
     position: absolute;
     height: 140px;
@@ -48,8 +45,7 @@ body {
 
 .score-area > p {
     text-align: left;
-    line-height: 100%;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -58,14 +54,19 @@ body {
     padding: 20px 0 0 0 ;
 }
 
-.btn {
-    color: white;
-    height: 50px;
-    width: 100px;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 0 0 10px;
-    font-weight: bold;
+.controls-area {
+    float: right;
+    padding: 10px 0 0 0;
+    height: 0px;
+    display: inline;
+}
+
+.btn {  
+    display:inline-block;
+    vertical-align: top;
+    width: 160px;
+    height: 40px;
+    margin: auto;
 }
 
 .btn--newgame {
@@ -78,7 +79,7 @@ body {
     border: 1px solid rgb(255, 68, 68);
 }
 
-.btn--hint {
+.btn--more-lives {
     background-color: rgb(255, 244, 88);
     border: 1px solid rgb(255, 68, 68);
 }
