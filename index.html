@@ -9,19 +9,6 @@
 </head>
 <body>
     <div class="game-area">
-        <div class="information-bar">
-            <div class= "controls-area">
-                <button type="button" class="btn btn--green">
-                    <p>New Game</p>
-                </button>
-                <button type="button" class="btn btn--red">
-                    <p>Reset</p>
-                </button>
-            </div>
-            <div class="score-area">
-                <p>Score: <span id="score">0</span></p>
-            </div>
-        </div>
         <div class="question-area" id="question-area">
         </div>
         <div class="periodic-table">
@@ -143,6 +130,19 @@
             <div class="element-tile group14 actinides" element-name="Fermium" element-symbol="Fm" element-number="100"><h1 class="text-symbol">Fm</h1></div>
             <div class="element-tile group15 actinides" element-name="Mendelevium" element-symbol="Md" element-number="101"><h1 class="text-symbol">Md</h1></div>
             <div class="element-tile group16 actinides" element-name="Nobeliium" element-symbol="No" element-number="102"><h1 class="text-symbol">No</h1></div>
+        </div>
+        <div class="information-bar">
+            <div class="score-area">
+                <p>Score: <span id="score">0</span></p>
+            </div>
+            <div class= "controls-area">
+                <button type="button" data-type="new-game" class="btn btn--green">
+                    <p>New Game</p>
+                </button>
+                <button type="button" data-type="help" class="btn btn--red">
+                    <p>Help</p>
+                </button>
+            </div>
         </div>
     </div>
     <div class="instructions">

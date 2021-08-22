@@ -1,4 +1,4 @@
-var elements = document.getElementsByClassName("element-tile");
+const elements = document.getElementsByClassName("element-tile");
 console.log(elements);
 
 var elementTable = new Array();
@@ -6,7 +6,13 @@ var elementTable = new Array();
 var styleSheet = document.styleSheets[0];
 
 
-document.addEventListener("DOMContentLoaded",function() {
+document.addEventListener("DOMContentLoaded",function () {
+
+    initiateGame();
+})
+
+function initiateGame() {
+
     for (let element of elements) {
         let eleName = element.getAttribute("element-name");
         let eleNum = element.getAttribute("element-number");
@@ -20,11 +26,23 @@ document.addEventListener("DOMContentLoaded",function() {
             checkClick(userAnswer, clickedElement);
         })
     }
+
+    let buttons = document.getElementsByTagName("button")
+
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+            if (this.getAttribute("data-type") === "new-game") {
+                newGame();
+            } else {
+                let gameType = this.getAttribute("help");
+            }
+        })
+    }
     
 
     runQuiz();
     
-})
+}
 
 /**
  *  Function to add each Element name, number and symbol to an array.
@@ -72,7 +90,7 @@ function createElement() {
     createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name) "";font-size: 0.6em;font-weight: bold;color: #000000;position: relative;bottom: 0px;left: -3px;}', 41);
+    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name)"";font-size: 0.8em;font-weight: 600;color: #000000;}', 41);
     console.log (styleSheet);
 
 
@@ -111,4 +129,13 @@ function removeElement () {
 function incrementScore () {
     let oldScore = parseInt(document.getElementById('score').innerText);
     document.getElementById("score").innerText = ++oldScore;
+}
+
+function newGame () {
+    elementTable = new Array();
+    let currentElement = document.getElementsByClassName('new-ele-bdr');
+    currentElement[0].parentNode.removeChild(currentElement[0]);
+    let newScore = "0";
+    document.getElementById("score").innerText = newScore;
+    initiateGame();
 }
