@@ -201,9 +201,16 @@ body {
     background-color: ivory;
 }
 
-
 .new-ele-bdr {
+    background-color: black;
+    width: 45px;
+    height: 50px;
+    margin: -1px 0 0 1px;
+    padding: 1px 0 0 1px;
+    font-size: 1.2em;
     position: relative;
     top: 50px;
     left: calc(100% / 2 - 26px);
 }
+
+.new-ele-bdr::after {content: "" attr(element-name) "";font-size: 0.6em;font-weight: bold;color: #000000;position: relative;bottom: 0px;left: -3px;}
