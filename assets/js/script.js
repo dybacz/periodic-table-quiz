@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded",function () {
 
 
 
-    initiateQuiz();
+    initiateGame();
 })
 
-function initiateQuiz() {
+function initiateGame() {
     
     let newLives = "10";
     document.getElementById("lives").innerText = newLives;
@@ -50,11 +50,11 @@ function initiateQuiz() {
         let eleNum = element.getAttribute("element-number");
         let eleSym = element.getAttribute("element-symbol");
         addToArray(eleName, eleNum, eleSym);
+
         
     }
     shuffleArray();
     runQuiz();
-    
 }
 
 /**
@@ -63,7 +63,6 @@ function initiateQuiz() {
 
 function addToArray (name, num, symbol) {
     elementTable.push([name, num, symbol]);
-
 }
 
 function runQuiz () {
@@ -72,11 +71,8 @@ function runQuiz () {
         elementStyle.innerHTML="?";
         elementStyle.style.backgroundColor = "grey";
     }
-
-
     console.table(elementTable);
     createElement();
-
 }
 
 /**
@@ -108,15 +104,12 @@ function createElement() {
         let finalScore = parseInt(document.getElementById('score').innerText);
         alert(`Congratulations you completed the table with a score of ${finalScore}`);
     }
-
-
 }
 
 function checkClick (userAnswer, clickedElement) {
-    while (elementTable.length > 0) {
+    if (elementTable.length > 0) {
         let correctAnswer = elementTable[0][1];
         if  (userAnswer === correctAnswer) {
-                    alert(`You Clicked the correct element`);
                     console.log();
                     revealElement(clickedElement);
                     incrementScore();           
@@ -169,9 +162,9 @@ function newGame () {
         elementTable = new Array();
         let currentElement = document.getElementsByClassName('new-ele-bdr');
         currentElement[0].parentNode.removeChild(currentElement[0]);
-        initiateQuiz();
+        initiateGame();
     } else {
-        initiateQuiz();
+        initiateGame();
     }
 }
 
@@ -193,3 +186,4 @@ function gameOver () {
     alert(`GAME OVER You have ran out of lives! Proceed to New Game`);
     newGame();
 }
+
