@@ -7,20 +7,7 @@ var styleSheet = document.styleSheets[0];
 
 
 document.addEventListener("DOMContentLoaded",function () {
-
-    initiateGame();
-})
-
-function initiateGame() {
-    
-    let newLives = "5";
-    document.getElementById("lives").innerText = newLives;
-
     for (let element of elements) {
-        let eleName = element.getAttribute("element-name");
-        let eleNum = element.getAttribute("element-number");
-        let eleSym = element.getAttribute("element-symbol");
-        addToArray(eleName, eleNum, eleSym);
 
         element.addEventListener("click", function () {
             let userAnswer = this.getAttribute("element-number");
@@ -28,6 +15,7 @@ function initiateGame() {
             console.log(clickedElement);
             checkClick(userAnswer, clickedElement);
         })
+
     }
 
     let buttons = document.getElementsByTagName("button")
@@ -46,6 +34,25 @@ function initiateGame() {
 
 
 
+    initiateQuiz();
+})
+
+function initiateQuiz() {
+    
+    let newLives = "10";
+    document.getElementById("lives").innerText = newLives;
+
+    let newScore = "0";
+    document.getElementById("score").innerText = newScore;
+
+    for (let element of elements) {
+        let eleName = element.getAttribute("element-name");
+        let eleNum = element.getAttribute("element-number");
+        let eleSym = element.getAttribute("element-symbol");
+        addToArray(eleName, eleNum, eleSym);
+        
+    }
+    shuffleArray();
     runQuiz();
     
 }
@@ -59,11 +66,24 @@ function addToArray (name, num, symbol) {
 
 }
 
+function runQuiz () {
+    let elementStyles = document.getElementsByClassName("text-symbol");
+    for (let elementStyle of elementStyles) {
+        elementStyle.innerHTML="?";
+        elementStyle.style.backgroundColor = "grey";
+    }
+
+
+    console.table(elementTable);
+    createElement();
+
+}
+
 /**
  * Shuffles List of elements to create a random order for questioning.
  * Shuffle uses Fisher-Yates Algorithm for random sorting.
  */
-function shuffleArray() {
+ function shuffleArray() {
     for (let i = elementTable.length -1; i > 0; i--) {
         let j = Math.floor(Math.random() * i);
         let k = elementTable[i];
@@ -72,23 +92,9 @@ function shuffleArray() {
       }
 }
 
-function runQuiz () {
-    let elementStyles = document.getElementsByClassName("text-symbol");
-    for (let elementStyle of elementStyles) {
-        elementStyle.innerHTML="?";
-        elementStyle.style.backgroundColor = "grey";
-    }
-
-    shuffleArray();
-
-    console.table(elementTable);
-    
-
-    createElement();
-
-}
-
 function createElement() {
+
+    if (elementTable.length > 0) {
     let newEleName = elementTable[0][0];
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
@@ -98,20 +104,26 @@ function createElement() {
     document.getElementById("question-area").appendChild(createElement); 
     styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name)"";font-size: 0.7em;font-weight: 600;color: #000000;}', 41);
     console.log (styleSheet);
+    } else {
+        let finalScore = parseInt(document.getElementById('score').innerText);
+        alert(`Congratulations you completed the table with a score of ${finalScore}`);
+    }
 
 
 }
 
 function checkClick (userAnswer, clickedElement) {
-    let correctAnswer = elementTable[0][1];
-    if  (userAnswer === correctAnswer) {
-                alert(`You Clicked the correct element`);
-                console.log();
-                revealElement(clickedElement);
-                incrementScore();           
-            } else {
-                alert(`Error! You clicked the incorrect element`);
-                decreaseLives();
+    while (elementTable.length > 0) {
+        let correctAnswer = elementTable[0][1];
+        if  (userAnswer === correctAnswer) {
+                    alert(`You Clicked the correct element`);
+                    console.log();
+                    revealElement(clickedElement);
+                    incrementScore();           
+                } else {
+                    alert(`Error! You clicked the incorrect element`);
+                    decreaseLives();
+                }
             }
     }
 
@@ -147,19 +159,20 @@ function decreaseLives () {
         alert(`You have ran out of lives`);
         newGame();
     } else {
-        alert(`You have ran out of lives, Proceed to New Game`);
-        newGame();
+        gameOver();
     }
     }
 
 
 function newGame () {
-    elementTable = new Array();
-    let currentElement = document.getElementsByClassName('new-ele-bdr');
-    currentElement[0].parentNode.removeChild(currentElement[0]);
-    let newScore = "0";
-    document.getElementById("score").innerText = newScore;
-    initiateGame();
+    if (elementTable.length > 0) {
+        elementTable = new Array();
+        let currentElement = document.getElementsByClassName('new-ele-bdr');
+        currentElement[0].parentNode.removeChild(currentElement[0]);
+        initiateQuiz();
+    } else {
+        initiateQuiz();
+    }
 }
 
 function moreLives () {
@@ -174,4 +187,9 @@ function moreLives () {
     }  else {
         alert(`You are unable to buy more lives, you have ${currentScore} points to spend`)
     }
+}
+
+function gameOver () {
+    alert(`GAME OVER You have ran out of lives! Proceed to New Game`);
+    newGame();
 }

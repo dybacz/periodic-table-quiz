@@ -67,6 +67,7 @@ body {
     width: 160px;
     height: 40px;
     margin: auto;
+    font-weight: bold;
 }
 
 .btn--newgame {
