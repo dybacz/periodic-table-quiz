@@ -72,7 +72,7 @@ function createElement() {
     createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name) "";font-size: 0.6em;font-weight: bold;color: #000000;position: relative;bottom: 10px;left: -3px;}', 41);
+    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name) "";font-size: 0.6em;font-weight: bold;color: #000000;position: relative;bottom: 0px;left: -3px;}', 41);
     console.log (styleSheet);
 
 
