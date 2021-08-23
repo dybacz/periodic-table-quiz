@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded",function () {
                 newGame();
             } else if (this.getAttribute("data-type") === "more-lives"){
                 moreLives();
-            } else {
-                let gameType = this.getAttribute("help");
+            } else if (this.getAttribute("data-type") === "help"){
+                openHelp();
             }
         })
     }
@@ -204,4 +204,17 @@ function alertBox (alertMessage) {
 function closeAlert() {
     let currentAlert = document.getElementsByClassName('underlay');
     currentAlert[0].parentNode.removeChild(currentAlert[0]);
+}
+
+function openHelp() {
+    let helpText = `<h1>How to play:</h1><br>
+    <ul>
+        <li>Click/Touch where you think that element is?</li><br>
+        <li>If correct you will be rewarded with 1 point!</li><br>
+        <li>If incorrect you will lose a life</li><br>
+    </ul>
+    Can you memorise where every element goes? <br><br>
+    HINT: You can buy extra lives for 2 points!<br><br>
+    Good Luck!<br><br>`
+    alertBox(helpText);
 }
