@@ -61,7 +61,7 @@ function addToArray (name, num, symbol) {
 function runQuiz () {
     let elementStyles = document.getElementsByClassName("text-symbol");
     for (let elementStyle of elementStyles) {
-        elementStyle.innerHTML="?";
+        elementStyle.setAttribute('data-element-symbol', "?");
         elementStyle.style.backgroundColor = "grey";
     }
     console.table(elementTable);
@@ -90,7 +90,7 @@ function createElement() {
     let newEleName = elementTable[0][0];
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
-    createElement.innerHTML = `<h1 class="text-symbol new-element">${newEleSym}</h1>`;
+    createElement.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
     createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('data-element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
@@ -118,7 +118,7 @@ function checkClick (userAnswer, clickedElement) {
 
 function revealElement (clickedElement) {
     let eleSym = clickedElement.getAttribute("data-element-symbol");
-    clickedElement.innerHTML = `<h1 class="text-symbol">${eleSym}</h1>`;
+    clickedElement.innerHTML = `<h1 class="text-symbol" data-element-symbol="${eleSym}"></h1>`;
     clearAnswer();
 }
 

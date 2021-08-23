@@ -111,8 +111,7 @@ body {
     font-size: 1.2em;
 }
 
-
-.element-tile h1 {
+.element-tile h1{
     text-align: center;
     height: 49px;
     font-size: 1.2em;
@@ -120,6 +119,9 @@ body {
     text-align: center;
     line-height: 50px;
     margin: 0 1px 1px 0;
+}
+.element-tile h1::after  {
+    content: "" attr(data-element-symbol) "";
 }
 
 .element-tile::after {
@@ -218,6 +220,10 @@ body {
     text-align: center;
     line-height: 80px;
     margin: 0 1px 1px 0;
+}
+
+.new-element::after {
+    content: "" attr(data-element-symbol) "";
 }
 
 .new-ele-bdr {
