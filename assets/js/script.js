@@ -1,24 +1,11 @@
 const elements = document.getElementsByClassName("element-tile");
-console.log(elements);
 
 var elementTable = new Array();
 
-var styleSheet = document.styleSheets[0];
-
 
 document.addEventListener("DOMContentLoaded",function () {
-    for (let element of elements) {
 
-        element.addEventListener("click", function () {
-            let userAnswer = this.getAttribute("element-number");
-            let clickedElement = this;
-            console.log(clickedElement);
-            checkClick(userAnswer, clickedElement);
-        })
-
-    }
-
-    let buttons = document.getElementsByTagName("button")
+    let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
         button.addEventListener("click", function () {
@@ -32,8 +19,6 @@ document.addEventListener("DOMContentLoaded",function () {
         })
     }
 
-
-
     initiateGame();
 })
 
@@ -46,17 +31,28 @@ function initiateGame() {
     document.getElementById("score").innerText = newScore;
 
     for (let element of elements) {
-        let eleName = element.getAttribute("element-name");
-        let eleNum = element.getAttribute("element-number");
-        let eleSym = element.getAttribute("element-symbol");
+        console.log(element);
+        element.addEventListener("click", addEvent, true);
+      
+
+        let eleName = element.getAttribute("data-element-name");
+        let eleNum = element.getAttribute("data-element-number");
+        let eleSym = element.getAttribute("data-element-symbol");
         addToArray(eleName, eleNum, eleSym);
 
         
     }
-    shuffleArray();
+
+    /*shuffleArray();*/
     runQuiz();
 }
 
+function addEvent (){
+    let userAnswer = this.getAttribute("data-element-number");
+    let clickedElement = this;
+    console.log(clickedElement);
+    checkClick(userAnswer, clickedElement);
+}
 /**
  *  Function to add each Element name, number and symbol to an array.
  */
@@ -89,17 +85,16 @@ function runQuiz () {
 }
 
 function createElement() {
-
+    let styleSheet = document.styleSheets[0];
     if (elementTable.length > 0) {
     let newEleName = elementTable[0][0];
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
     createElement.innerHTML = `<h1 class="text-symbol new-element">${newEleSym}</h1>`;
     createElement.classList.add('new-ele-bdr'); 
-    createElement.setAttribute('element-name', `${newEleName}`);
+    createElement.setAttribute('data-element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(element-name)"";font-size: 0.7em;font-weight: 600;color: #000000;}', 41);
-    console.log (styleSheet);
+    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(data-element-name)"";font-size: 0.7em;font-weight: 600;color: #000000;}', 41);
     } else {
         let finalScore = parseInt(document.getElementById('score').innerText);
         alert(`Congratulations you completed the table with a score of ${finalScore}`);
@@ -110,9 +105,10 @@ function checkClick (userAnswer, clickedElement) {
     if (elementTable.length > 0) {
         let correctAnswer = elementTable[0][1];
         if  (userAnswer === correctAnswer) {
-                    console.log();
+                    console.log(clickedElement);
                     revealElement(clickedElement);
-                    incrementScore();           
+                    incrementScore(); 
+                    clickedElement.removeEventListener("click", addEvent, true);
                 } else {
                     alert(`Error! You clicked the incorrect element`);
                     decreaseLives();
@@ -121,7 +117,7 @@ function checkClick (userAnswer, clickedElement) {
     }
 
 function revealElement (clickedElement) {
-    let eleSym = clickedElement.getAttribute("element-symbol");
+    let eleSym = clickedElement.getAttribute("data-element-symbol");
     clickedElement.innerHTML = `<h1 class="text-symbol">${eleSym}</h1>`;
     clearAnswer();
 }
@@ -149,8 +145,7 @@ function decreaseLives () {
         document.getElementById("lives").innerText = --oldLives;
     } else if (oldLives === 1) {
         document.getElementById("lives").innerText = --oldLives;
-        alert(`You have ran out of lives`);
-        newGame();
+        gameOver();
     } else {
         gameOver();
     }
@@ -181,9 +176,11 @@ function moreLives () {
         alert(`You are unable to buy more lives, you have ${currentScore} points to spend`)
     }
 }
-
 function gameOver () {
+    
+    for (let element of elements) {
+        element.removeEventListener("click", addEvent, true);
+    }
     alert(`GAME OVER You have ran out of lives! Proceed to New Game`);
-    newGame();
 }
 
