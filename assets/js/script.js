@@ -1,8 +1,10 @@
+/* Array of all html object tiles in the periodic table*/
 const elements = document.getElementsByClassName("element-tile");
 
+/* Global Variable Array for 2.dimenseional list of elements, symbols, and corresponding number to be quizzed on*/
 var elementTable = new Array();
 
-
+/*Event Listner - After all DOM Content loaded, eventlisteners for buttons intitated then game inititated*/
 document.addEventListener("DOMContentLoaded",function () {
 
     let buttons = document.getElementsByTagName("button");
@@ -18,10 +20,16 @@ document.addEventListener("DOMContentLoaded",function () {
             }
         })
     }
-
     initiateGame();
 })
 
+/** Initiates New Game
+ * Sets Initial value for lives and points.
+ * Iterates through Constant table of html object for each element tile,
+ * Adds event listener for clicks on each element tile.
+ * Extracts element data from attributes of html object send to addToArray function 
+ * After iteration complete Quiz is run.
+ */
 function initiateGame() {
     
     let newLives = "3";
@@ -31,25 +39,28 @@ function initiateGame() {
     document.getElementById("score").innerText = newScore;
 
     for (let element of elements) {
-        element.addEventListener("click", addEvent, true);
+    
+        element.addEventListener("click", afterClick, true);
+
         let eleName = element.getAttribute("data-element-name");
         let eleNum = element.getAttribute("data-element-number");
         let eleSym = element.getAttribute("data-element-symbol");
         addToArray(eleName, eleNum, eleSym);
-
-        
     }
 
     /*shuffleArray();*/
     runQuiz();
 }
-
-function addEvent (){
+/**
+ * Extracts attribute from clicked tile, data sent to be checked for right answer.
+ * Extracts which html element was clicked. Infor sent on so event listener can be removed.
+ */
+function afterClick (){
     let userAnswer = this.getAttribute("data-element-number");
     let clickedElement = this;
-    console.log(clickedElement);
     checkClick(userAnswer, clickedElement);
 }
+
 /**
  *  Function to add each Element name, number and symbol to an array.
  */
@@ -58,6 +69,11 @@ function addToArray (name, num, symbol) {
     elementTable.push([name, num, symbol]);
 }
 
+/**
+ * Quiz begins.
+ * Iterates through all element tiles on periodic table and changes visible symbols to '?'
+ * While also changing all background colours to grey.
+ */
 function runQuiz () {
     let elementStyles = document.getElementsByClassName("text-symbol");
     for (let elementStyle of elementStyles) {
@@ -81,24 +97,28 @@ function runQuiz () {
       }
 }
 
-function createElement() {
-    let styleSheet = document.styleSheets[0];
-    let styleSheetEnd = styleSheet.length
-    
-    if (elementTable.length > 0) {
+/**
+ * Checks to make sure global table of shuffled elements has content. 
+ * If so it Loads chemical element name and symbol from top of the shuffled global table.
+ * Creates a new DIV and edits in the innerHTML to with the loaded element symbol. 
+ * Add class to div and set Attributes to the element name loaded.
+ * Append this Div to Question Area.
+ * 
+ * If no content in table. game done. Score extracted and sent to alert box along with message. 
+ */
 
-    let newEleName = elementTable[0][0];
-    let newEleSym = elementTable[0][2];
-    let createElement = document.createElement('div');
-    createElement.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
-    createElement.classList.add('new-ele-bdr'); 
-    createElement.setAttribute('data-element-name', `${newEleName}`);
-    document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(data-element-name)"";font-size: 0.8em;font-weight: 600;color: #000000;}', styleSheetEnd + 1);
-    console.log(styleSheet);
+function createElement() {
+    if (elementTable.length > 0) {
+        let newEleName = elementTable[0][0];
+        let newEleSym = elementTable[0][2];
+        let createElement = document.createElement('div');
+        createElement.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
+        createElement.classList.add('new-ele-bdr'); 
+        createElement.setAttribute('data-element-name', `${newEleName}`);
+        document.getElementById("question-area").appendChild(createElement); 
     } else {
         let finalScore = parseInt(document.getElementById('score').innerText);
-        alertBox(`Congratulations you completed the table with a score of ${finalScore}`);
+        alertBox(`Congratulations you completed the table with a score of ${finalScore}`, "yellow");
     }
 }
 
@@ -109,7 +129,7 @@ function checkClick (userAnswer, clickedElement) {
                     incrementScore(); 
                     console.log(clickedElement);
                     revealElement(clickedElement);
-                    clickedElement.removeEventListener("click", addEvent, true);
+                    clickedElement.removeEventListener("click", afterClick, true);
                 } else {
                     decreaseLives();
                 }
@@ -143,7 +163,7 @@ function decreaseLives () {
     let oldLives = parseInt(document.getElementById('lives').innerText);
     if (oldLives > 1) {
         document.getElementById("lives").innerText = --oldLives;
-        alertBox(`You clicked the incorrect element. - 1 Life`);
+        alertBox(`You clicked the incorrect element. - 1 Life`, "red");
     } else if (oldLives === 1) {
         document.getElementById("lives").innerText = --oldLives;
         gameOver();
@@ -172,22 +192,25 @@ function moreLives () {
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
-        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`)
+        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`, "red")
     }  else {
-        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`)
+        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`, "red")
     }
 }
 function gameOver () {
     
     for (let element of elements) {
-        element.removeEventListener("click", addEvent, true);
+        element.removeEventListener("click", afterClick, true);
     }
     let finalScore = parseInt(document.getElementById('score').innerText);
-    alertBox(`Game Over <br> you finished with ${finalScore} points`);
+    alertBox(`Game Over <br> you finished with ${finalScore} points`, "red");
 }
 
-function alertBox (alertMessage) {
+function alertBox (alertMessage, colour) {
     let createBox = document.createElement('div');
+    let styleSheet = document.styleSheets[0];
+    let styleSheetEnd = styleSheet.cssRules.length;
+    styleSheet.insertRule(`.alert-box {border: 2px solid ${colour};}`, styleSheetEnd);
     createBox.innerHTML = `<div class="alert-box">
                                 <p>${alertMessage}<p>
                                 <button type="button" onclick="closeAlert()" class="btn btn--close">
@@ -197,13 +220,16 @@ function alertBox (alertMessage) {
     createBox.classList.add('underlay'); 
     let parent = document.getElementsByClassName("game-area")[0].parentNode;
     parent.insertBefore(createBox, parent.childNodes[0]);
-    console.log(parent);
 
 }
 
 function closeAlert() {
     let currentAlert = document.getElementsByClassName('underlay');
     currentAlert[0].parentNode.removeChild(currentAlert[0]);
+    let styleSheet = document.styleSheets[0];
+    let styleSheetEnd = styleSheet.cssRules.length - 1;
+    styleSheet.deleteRule(styleSheetEnd);
+    console.log(styleSheet);
 }
 
 function openHelp() {
@@ -216,5 +242,5 @@ function openHelp() {
     Can you memorise where every element goes? <br><br>
     HINT: You can buy extra lives for 2 points!<br><br>
     Good Luck!<br><br>`
-    alertBox(helpText);
+    alertBox(helpText, "red");
 }
