@@ -81,7 +81,7 @@ function runQuiz () {
         elementStyle.style.backgroundColor = "grey";
     }
     console.table(elementTable);
-    createElement();
+    tableCheck();
 }
 
 /**
@@ -99,28 +99,33 @@ function runQuiz () {
 
 /**
  * Checks to make sure global table of shuffled elements has content. 
- * If so it Loads chemical element name and symbol from top of the shuffled global table.
+ * If not you win.
+ */
+function tableCheck() {
+    if (elementTable.length > 0) {
+        nextChemicalElementTile();
+    } else {
+        youWin();
+    }
+}
+
+/**
  * Creates a new DIV and edits in the innerHTML to with the loaded element symbol. 
  * Add class to div and set Attributes to the element name loaded.
  * Append this Div to Question Area.
- * 
- * If no content in table. game done. Score extracted and sent to alert box along with message. 
  */
 
-function createElement() {
-    if (elementTable.length > 0) {
+function nextChemicalElementTile() {
         let newEleName = elementTable[0][0];
         let newEleSym = elementTable[0][2];
-        let createElement = document.createElement('div');
-        createElement.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
-        createElement.classList.add('new-ele-bdr'); 
-        createElement.setAttribute('data-element-name', `${newEleName}`);
-        document.getElementById("question-area").appendChild(createElement); 
-    } else {
-        let finalScore = parseInt(document.getElementById('score').innerText);
-        alertBox(`Congratulations you completed the table with a score of ${finalScore}`, "yellow");
-    }
+        let nextChemicalElementTile = document.createElement('div');
+        nextChemicalElementTile.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
+        nextChemicalElementTile.classList.add('new-ele-bdr'); 
+        nextChemicalElementTile.setAttribute('data-element-name', `${newEleName}`);
+        document.getElementById("question-area").appendChild(nextChemicalElementTile); 
 }
+
+
 
 function checkClick (userAnswer, clickedElement) {
     if (elementTable.length > 0) {
@@ -151,7 +156,7 @@ function clearAnswer () {
 function removeElement () {
     let currentElement = document.getElementsByClassName('new-ele-bdr');
     currentElement[0].parentNode.removeChild(currentElement[0]);
-    createElement();
+    tableCheck();
 }
 
 function incrementScore () {
@@ -214,7 +219,7 @@ function alertBox (alertMessage, colour) {
     createBox.innerHTML = `<div class="alert-box">
                                 <p>${alertMessage}<p>
                                 <button type="button" onclick="closeAlert()" class="btn btn--close">
-                                    <p>Close</p>
+                                    <span>Close</span>
                                 </button>
                             </div>`;
     createBox.classList.add('underlay'); 
@@ -243,4 +248,9 @@ function openHelp() {
     HINT: You can buy extra lives for 2 points!<br><br>
     Good Luck!<br><br>`
     alertBox(helpText, "red");
+}
+
+function youWin() {
+    let finalScore = parseInt(document.getElementById('score').innerText);
+        alertBox(`Congratulations you completed the table with a score of ${finalScore}`, "yellow");
 }
