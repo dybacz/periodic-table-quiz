@@ -119,7 +119,7 @@ function nextChemicalElementTile() {
         let newEleName = elementTable[0][0];
         let newEleSym = elementTable[0][2];
         let nextChemicalElementTile = document.createElement('div');
-        nextChemicalElementTile.innerHTML = `<h1 class="new-element" data-element-symbol="${newEleSym}"></h1>`;
+        nextChemicalElementTile.innerHTML = `<p class="new-element" data-element-symbol="${newEleSym}"></p>`;
         nextChemicalElementTile.classList.add('new-ele-bdr'); 
         nextChemicalElementTile.setAttribute('data-element-name', `${newEleName}`);
         document.getElementById("question-area").appendChild(nextChemicalElementTile); 
@@ -143,7 +143,7 @@ function checkClick (userAnswer, clickedElement) {
 
 function revealElement (clickedElement) {
     let eleSym = clickedElement.getAttribute("data-element-symbol");
-    clickedElement.innerHTML = `<h1 class="text-symbol" data-element-symbol="${eleSym}"></h1>`;
+    clickedElement.innerHTML = `<p class="text-symbol" data-element-symbol="${eleSym}"></p>`;
     clearAnswer();
 }
 

@@ -113,7 +113,7 @@ body {
     font-size: 1.2em;
 }
 
-.element-tile h1{
+.element-tile p {
     text-align: center;
     height: 49px;
     font-size: 1.2em;
@@ -122,7 +122,7 @@ body {
     line-height: 50px;
     margin: 0 1px 1px 0;
 }
-.element-tile h1::after  {
+.element-tile p::after  {
     content: "" attr(data-element-symbol) "";
 }
 
@@ -136,7 +136,7 @@ body {
     left: 1px;
 }
 
-#He, .group1 h1, .group2 h1 {
+#He, .group1 p, .group2 p {
     background-color: tomato;
 }
 .group1 {
@@ -145,8 +145,8 @@ body {
 .group2 {
     grid-column: 2;
 }
-.group3 h1, .group4 h1, .group5 h1, .group6 h1, .group7 h1, .group8 h1,
-.group9 h1, .group10 h1, .group11 h1, .group12 h1{
+.group3 p, .group4 p, .group5 p, .group6 p, .group7 p, .group8 p,
+.group9 p, .group10 p, .group11 p, .group12 p {
     background-color: skyblue;
 }
 .group3 {
@@ -179,7 +179,7 @@ body {
 .group12 {
     grid-column: 12;
 }
-.group13 h1, .group14 h1, .group15 h1, .group16 h1, .group17 h1, .group18 h1{
+.group13 p, .group14 p, .group15 p, .group16 p, .group17 p, .group18 p {
     background-color: rgb(253, 255, 113);
 }
 
@@ -202,7 +202,7 @@ body {
     grid-column: 18;
 }
 
-.lanthanides h1, .actinides h1{
+.lanthanides p, .actinides p{
     background-color: rgb(198, 247, 125)
 }
 
@@ -282,3 +282,4 @@ body {
     display: table;
     clear: both;
 }
+
