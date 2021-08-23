@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded",function () {
 
 function initiateGame() {
     
-    let newLives = "10";
+    let newLives = "3";
     document.getElementById("lives").innerText = newLives;
 
     let newScore = "0";
@@ -83,7 +83,10 @@ function runQuiz () {
 
 function createElement() {
     let styleSheet = document.styleSheets[0];
+    let styleSheetEnd = styleSheet.length
+    
     if (elementTable.length > 0) {
+
     let newEleName = elementTable[0][0];
     let newEleSym = elementTable[0][2];
     let createElement = document.createElement('div');
@@ -91,10 +94,11 @@ function createElement() {
     createElement.classList.add('new-ele-bdr'); 
     createElement.setAttribute('data-element-name', `${newEleName}`);
     document.getElementById("question-area").appendChild(createElement); 
-    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(data-element-name)"";font-size: 0.7em;font-weight: 600;color: #000000;}', 41);
+    styleSheet.insertRule ('.new-ele-bdr::after {content: "" attr(data-element-name)"";font-size: 0.8em;font-weight: 600;color: #000000;}', styleSheetEnd + 1);
+    console.log(styleSheet);
     } else {
         let finalScore = parseInt(document.getElementById('score').innerText);
-        alert(`Congratulations you completed the table with a score of ${finalScore}`);
+        alertBox(`Congratulations you completed the table with a score of ${finalScore}`);
     }
 }
 
@@ -102,12 +106,11 @@ function checkClick (userAnswer, clickedElement) {
     if (elementTable.length > 0) {
         let correctAnswer = elementTable[0][1];
         if  (userAnswer === correctAnswer) {
+                    incrementScore(); 
                     console.log(clickedElement);
                     revealElement(clickedElement);
-                    incrementScore(); 
                     clickedElement.removeEventListener("click", addEvent, true);
                 } else {
-                    alert(`Error! You clicked the incorrect element`);
                     decreaseLives();
                 }
             }
@@ -140,6 +143,7 @@ function decreaseLives () {
     let oldLives = parseInt(document.getElementById('lives').innerText);
     if (oldLives > 1) {
         document.getElementById("lives").innerText = --oldLives;
+        alertBox(`You clicked the incorrect element. - 1 Life`);
     } else if (oldLives === 1) {
         document.getElementById("lives").innerText = --oldLives;
         gameOver();
@@ -168,9 +172,9 @@ function moreLives () {
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
-        alert(`You are unable to buy more lives, you have only ${currentScore} point to spend`)
+        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`)
     }  else {
-        alert(`You are unable to buy more lives, you have ${currentScore} points to spend`)
+        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`)
     }
 }
 function gameOver () {
@@ -178,6 +182,26 @@ function gameOver () {
     for (let element of elements) {
         element.removeEventListener("click", addEvent, true);
     }
-    alert(`GAME OVER You have ran out of lives! Proceed to New Game`);
+    let finalScore = parseInt(document.getElementById('score').innerText);
+    alertBox(`Game Over <br> you finished with ${finalScore} points`);
 }
 
+function alertBox (alertMessage) {
+    let createBox = document.createElement('div');
+    createBox.innerHTML = `<div class="alert-box">
+                                <p>${alertMessage}<p>
+                                <button type="button" onclick="closeAlert()" class="btn btn--close">
+                                    <p>Close</p>
+                                </button>
+                            </div>`;
+    createBox.classList.add('underlay'); 
+    let parent = document.getElementsByClassName("game-area")[0].parentNode;
+    parent.insertBefore(createBox, parent.childNodes[0]);
+    console.log(parent);
+
+}
+
+function closeAlert() {
+    let currentAlert = document.getElementsByClassName('underlay');
+    currentAlert[0].parentNode.removeChild(currentAlert[0]);
+}

@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 26% 0 27%;
+    margin: 0 26% 0 26%;
    }
 
 .information-bar {
@@ -233,4 +233,37 @@ body {
     text-align: center;
 }
 
+.alert-box {
+    position: fixed;
+    background-color: white;
+    top: calc(100% / 2 - 300px);
+    left: calc(100% / 2 - 200px);
+    text-align: center;
+    height: 200px;
+    width: 400px;
+    z-index: 99;
+    border: 2px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.alert-box > p {
+    line-height:25px;
+}
 
+.underlay {
+    background-color: rgba(0, 0, 0, 0.507);
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 98;
+}
+
+.underlay::after {
+    content: '';
+    display: table;
+    clear: both;
+}
