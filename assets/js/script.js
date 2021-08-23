@@ -31,10 +31,7 @@ function initiateGame() {
     document.getElementById("score").innerText = newScore;
 
     for (let element of elements) {
-        console.log(element);
         element.addEventListener("click", addEvent, true);
-      
-
         let eleName = element.getAttribute("data-element-name");
         let eleNum = element.getAttribute("data-element-number");
         let eleSym = element.getAttribute("data-element-symbol");
