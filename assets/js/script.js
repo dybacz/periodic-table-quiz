@@ -1,27 +1,29 @@
+/*jshint esversion: 6 */
 /* Array of all html object tiles in the periodic table*/
 const elements = document.getElementsByClassName("element-tile");
 
 /* Global Variable Array for 2.dimenseional list of elements, symbols, and corresponding number to be quizzed on*/
-var elementTable = new Array();
+var elementTable = [];
 
 /*Event Listner - After all DOM Content loaded, eventlisteners for buttons intitated then game inititated*/
 document.addEventListener("DOMContentLoaded",function () {
 
     let buttons = document.getElementsByTagName("button");
-
     for (let button of buttons) {
-        button.addEventListener("click", function () {
-            if (this.getAttribute("data-type") === "new-game") {
-                newGame();
-            } else if (this.getAttribute("data-type") === "more-lives"){
-                moreLives();
-            } else if (this.getAttribute("data-type") === "help"){
-                openHelp();
-            }
-        })
+        button.addEventListener("click", afterClickButtons, true);
     }
     initiateGame();
-})
+});
+
+function afterClickButtons() {
+    if (this.getAttribute("data-type") === "new-game") {
+        newGame();
+    } else if (this.getAttribute("data-type") === "more-lives"){
+        moreLives();
+    } else if (this.getAttribute("data-type") === "help"){
+        openHelp();
+    } 
+}
 
 /** Initiates New Game
  * Sets Initial value for lives and points.
@@ -40,7 +42,7 @@ function initiateGame() {
 
     for (let element of elements) {
     
-        element.addEventListener("click", afterClick, true);
+        element.addEventListener("click", afterClickElements, true);
 
         let eleName = element.getAttribute("data-element-name");
         let eleNum = element.getAttribute("data-element-number");
@@ -48,14 +50,14 @@ function initiateGame() {
         addToArray(eleName, eleNum, eleSym);
     }
 
-    /*shuffleArray();*/
+    shuffleArray();
     runQuiz();
 }
 /**
  * Extracts attribute from clicked tile, data sent to be checked for right answer.
  * Extracts which html element was clicked. Infor sent on so event listener can be removed.
  */
-function afterClick (){
+function afterClickElements (){
     let userAnswer = this.getAttribute("data-element-number");
     let clickedElement = this;
     checkClick(userAnswer, clickedElement);
@@ -134,7 +136,7 @@ function checkClick (userAnswer, clickedElement) {
                     incrementScore(); 
                     console.log(clickedElement);
                     revealElement(clickedElement);
-                    clickedElement.removeEventListener("click", afterClick, true);
+                    clickedElement.removeEventListener("click", afterClickButtons, true);
                 } else {
                     decreaseLives();
                 }
@@ -180,7 +182,7 @@ function decreaseLives () {
 
 function newGame () {
     if (elementTable.length > 0) {
-        elementTable = new Array();
+        elementTable = [];
         let currentElement = document.getElementsByClassName('new-ele-bdr');
         currentElement[0].parentNode.removeChild(currentElement[0]);
         initiateGame();
@@ -197,15 +199,15 @@ function moreLives () {
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
-        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`, "red")
+        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`, "red");
     }  else {
-        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`, "red")
+        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`, "red");
     }
 }
 function gameOver () {
     
     for (let element of elements) {
-        element.removeEventListener("click", afterClick, true);
+        element.removeEventListener("click", afterClickButtons, true);
     }
     let finalScore = parseInt(document.getElementById('score').innerText);
     alertBox(`Game Over <br> you finished with ${finalScore} points`, "red");
@@ -217,14 +219,15 @@ function alertBox (alertMessage, colour) {
     let styleSheetEnd = styleSheet.cssRules.length;
     styleSheet.insertRule(`.alert-box {border: 2px solid ${colour};}`, styleSheetEnd);
     createBox.innerHTML = `<div class="alert-box">
-                                <p>${alertMessage}<p>
-                                <button type="button" onclick="closeAlert()" class="btn btn--close">
+                               <p>${alertMessage}</p>
+                                <button type="button" data-type="close-alert" class="btn btn--close">
                                     <span>Close</span>
                                 </button>
                             </div>`;
     createBox.classList.add('underlay'); 
     let parent = document.getElementsByClassName("game-area")[0].parentNode;
     parent.insertBefore(createBox, parent.childNodes[0]);
+    document.getElementsByClassName('btn--close')[0].addEventListener("click", closeAlert);
 
 }
 
@@ -246,7 +249,7 @@ function openHelp() {
     </ul>
     Can you memorise where every element goes? <br><br>
     HINT: You can buy extra lives for 2 points!<br><br>
-    Good Luck!<br><br>`
+    Good Luck!<br><br>`;
     alertBox(helpText, "red");
 }
 
