@@ -9,6 +9,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     margin: 0 26% 0 26%;
+    
    }
 
 .information-bar {
@@ -17,6 +18,7 @@ body {
     max-height: 80px;
     overflow: hidden;
     padding:  20px 0 10px 0;
+    
 }
 
 .information-bar::after {
@@ -43,69 +45,96 @@ body {
     border: 1px solid #818181;
     border-radius: 5px;
     box-sizing: border-box;
-    width: 40%;
+    width: 50%;
     height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-radius: 30px;
-    box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.6);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .score-area > p {
     text-align: left;
     font-size: 1.6em;
     font-weight: bold;
+    width: 100%;
+    padding-left: 30px;
 }
 
 .controls-area {
     float: right;
     display: inline;
     box-sizing: border-box;
-    width: 60%;
-    text-align: right;
+    width: 50%;
+    text-align: center;
+    
 }
 
 .btn {  
     vertical-align: top;
     width: 140px;
     height: 60px;
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: bold;
     border-radius: 5px;
     margin-left: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    padding: 0 10px;
+    box-sizing: content-box;
+}
+
+.btn > i{
+    padding-right: 10px;
+    text-align: left;
 }
 
 .btn--newgame {
     background-color: green;
     border: 1px solid rgb(0, 202, 0);
-    color: white;
+
 }
 
 .btn--help {
-    background-color: red;
+    background-color: rgb(131, 3, 206);
     border: 1px solid rgb(255, 68, 68);
-    color: white;
+
 }
 
 .btn--more-lives {
-    background-color: rgb(255, 244, 88);
-    border: 1px solid rgb(255, 68, 68);
+    background-color: rgb(0, 132, 194);
+    border: 1px solid rgb(37, 153, 207);
 }
 .btn--close {
-    background-color: red;
-    border: 1px solid rgb(255, 68, 68);
-    color: white;
+    background-color: rgb(68, 68, 68);
+    border: 1px solid rgb(31, 31, 31);
+    margin: 10px 0;
+    font-size: 1em;
+    width: 100px;
+    height: 40px;
 }
 
 .game-area {
     position: fixed;
-    top: 5%;
-    background-color: rgb(219, 219, 219);
     padding: 20px 10px 10px 10px;
-    border: 1px solid black;
+
 }
 
+.toolbar {
+    background-color: rgb(153, 153, 153);;
+    right: 170px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    border-radius: 0 0 15px 15px;
+}
+
+.toolbar > i {
+    font-size: 3em;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+}
 
 
 .periodic-table {
@@ -115,6 +144,11 @@ body {
     grid-auto-flow: row;
     grid-gap: 0.6em;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(250, 250, 250);
+    padding: 10px 30px;
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 25px;
+    box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.6);
 }
 
 .element-tile {
@@ -125,7 +159,10 @@ body {
     padding: 1px 0 0 1px;
     font-size: 1.2em;
     border-radius: 3px;
-    box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.6);
+}
+
+.element-tile:hover {
+    box-shadow: 0px 1px 8px 0px rgba(119, 119, 119, 0.35);
 }
 
 .element-tile p {
@@ -273,16 +310,51 @@ body {
     left: calc(100% / 2 - 250px);
     text-align: center;
     height: auto;
-    width: 300px;
+    width: 500px;
     z-index: 99;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    padding: 40px 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 139, 139, 0.5);
+    box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.6);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.alert-box > h3 {
+    width:100%;
+    text-align:left;
+    letter-spacing: 1px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+
+.alert-box > ul {
+    width: 80%;
+    line-height: 9px;
+    text-align: left;
+    padding: 10px 0;
+    box-sizing: border-box;
+    
 }
 .alert-box > p {
-    line-height:25px;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.alert-box a:link {
+    color: red;
+    text-decoration: none;
+}
+.alert-box a:visited {
+    color: red;
+}
+.alert-box i {
+    font-size: 2em;
+    padding: 0 5px;
 }
 
 .underlay {
@@ -300,4 +372,3 @@ body {
     display: table;
     clear: both;
 }
-

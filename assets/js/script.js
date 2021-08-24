@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded",function () {
     for (let button of buttons) {
         button.addEventListener("click", afterClickButtons, true);
     }
+
+    let toolbars = document.getElementsByClassName("toolbar-btn")
+    for (let toolbar of toolbars) {
+        toolbar.addEventListener("click", afterClickButtons, true);
+    }
     initiateGame();
 });
 
@@ -22,7 +27,13 @@ function afterClickButtons() {
         moreLives();
     } else if (this.getAttribute("data-type") === "help"){
         openHelp();
-    } 
+    } else if (this.getAttribute("data-type") === "information"){
+        openInformation();
+    } else if (this.getAttribute("data-type") === "full-screen"){
+        fullScreen();
+    } else if (this.getAttribute("data-type") === "full-screen-on"){
+        closeFullScreen();
+    }
 }
 
 /** Initiates New Game
@@ -50,7 +61,7 @@ function initiateGame() {
         addToArray(eleName, eleNum, eleSym);
     }
 
-    shuffleArray();
+    /*shuffleArray();*/
     runQuiz();
 }
 /**
@@ -137,7 +148,7 @@ function checkClick (userAnswer, clickedElement) {
                     incrementScore(); 
                     console.log(clickedElement);
                     revealElement(clickedElement);
-                    clickedElement.removeEventListener("click", afterClickButtons, true);
+                    clickedElement.removeEventListener("click", afterClickElements, true);
                 } else {
                     decreaseLives();
                 }
@@ -171,7 +182,7 @@ function decreaseLives () {
     let oldLives = parseInt(document.getElementById('lives').innerText);
     if (oldLives > 1) {
         document.getElementById("lives").innerText = --oldLives;
-        alertBox(`You clicked the incorrect element. - 1 Life`, "red");
+        alertBox("Wrong", `You clicked the incorrect element. - 1 Life`, "red");
     } else if (oldLives === 1) {
         document.getElementById("lives").innerText = --oldLives;
         gameOver();
@@ -197,30 +208,36 @@ function moreLives () {
     let currentScore = parseInt(document.getElementById('score').innerText);
 
     if (currentScore > 1) {
+        alertBox("Lives +1 ", "", "green")
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
-        alertBox(`You are unable to buy more lives, you have only ${currentScore} point to spend`, "red");
+        alertBox("Error", `You are unable to buy more lives, you have only ${currentScore} point to spend`, "red");
     }  else {
-        alertBox(`You are unable to buy more lives, you have ${currentScore} points to spend`, "red");
+        alertBox("Error", `You are unable to buy more lives, you have ${currentScore} points to spend`, "red");
     }
 }
 function gameOver () {
     
     for (let element of elements) {
-        element.removeEventListener("click", afterClickButtons, true);
+        element.removeEventListener("click", afterClickElements, true);
     }
+
+    let extraLifeButton = document.getElementsByClassName("btn--more-lives")[0];
+    extraLifeButton.removeEventListener("click", afterClickButtons, true);
+
     let finalScore = parseInt(document.getElementById('score').innerText);
-    alertBox(`Game Over <br> you finished with ${finalScore} points`, "red");
+    alertBox("Game Over", `<br> you finished with ${finalScore} points`, "red");
 }
 
-function alertBox (alertMessage, colour) {
+function alertBox (alertTitle, alertMessage, colour) {
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length;
-    styleSheet.insertRule(`.alert-box {border: 2px solid ${colour};}`, styleSheetEnd);
+    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd);
     createBox.innerHTML = `<div class="alert-box">
-                               <p>${alertMessage}</p>
+                                <h1>${alertTitle}</h1>
+                                ${alertMessage}
                                 <button type="button" data-type="close-alert" class="btn btn--close">
                                     <span>Close</span>
                                 </button>
@@ -242,19 +259,74 @@ function closeAlert() {
 }
 
 function openHelp() {
-    let helpText = `<h1>How to play:</h1><br>
+    let helpTitle = "Help";
+    let helpText = `<br>
+    <h3>How to play:</h3>
+
+    <p>Your task is to reveal all the elements in the periodic table and score as many points as possible.</p>
     <ul>
         <li>Click/Touch where you think that element is?</li><br>
         <li>If correct you will be rewarded with 1 point!</li><br>
         <li>If incorrect you will lose a life</li><br>
     </ul>
-    Can you memorise where every element goes? <br><br>
-    HINT: You can buy extra lives for 2 points!<br><br>
-    Good Luck!<br><br>`;
-    alertBox(helpText, "red");
+    <p>Can you remember where every element is on the periodic table?</p><br>
+    <p>TIP: You can buy an extra life but it will cost you 2 points!</p><br>
+    Good Luck<br>
+    `;
+    alertBox(helpTitle, helpText, "red");
+}
+
+function openInformation() {
+    let informationTitle = "About";
+    let informationText = `<br>
+    <p style="text-align:center; padding-bottom:10px;">
+        Project 2 - Javascript Essentials - <a href="https://codeinstitute.net/" target="_blank">Code Institute</a>
+    </p>
+    <p style="text-align:center; padding-bottom:10px;">
+        Created by James Dybacz &copy;2021
+    </p>
+    <p style="text-align:center; padding-bottom:10px;">
+        <span>Email: <a href="mailto:jdybacz@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></span>
+        <span>GitHub: <a href="https://github.com/dybacz" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+        <span>LinkenIn:<a href="https://www.linkedin.com/in/james-dybacz/" target="_blank"><i class="fab fa-github"></i></a></span>
+    </p>
+    <p style="text-align:center;">
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+                alt="Valid CSS!" />
+        </a>
+    </p>
+    <br>`;
+    alertBox(informationTitle, informationText, "grey");
 }
 
 function youWin() {
     let finalScore = parseInt(document.getElementById('score').innerText);
-        alertBox(`Congratulations you completed the table with a score of ${finalScore}`, "yellow");
+        alertBox("Quiz Completed", `<p>Congratulations! you completed the table with a score of ${finalScore}</p>`, "green");
 }
+
+function fullScreen() {
+    let gameArea = document.body;
+    if (gameArea.requestFullscreen) {
+        gameArea.requestFullscreen();
+      } else if (gameArea.webkitRequestFullscreen) { /* Safari */
+        gameArea.webkitRequestFullscreen();
+      } else if (gameArea.msRequestFullscreen) { /* IE11 */
+        gameArea.msRequestFullscreen();
+      }
+      let fullScreenBtn = document.getElementsByClassName("toolbar-btn")[0];
+      fullScreenBtn.setAttribute('data-type', "full-screen-on");
+}
+
+function closeFullScreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+    let fullScreenBtn = document.getElementsByClassName("toolbar-btn")[0];
+      fullScreenBtn.setAttribute('data-type', "full-screen");
+    }

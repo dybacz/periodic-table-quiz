@@ -8,9 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="game-area">
+        <div class="toolbar">
+            <i class="fas fa-expand-arrows-alt toolbar-btn" data-type="full-screen"></i>
+            <i class="fas fa-info-circle toolbar-btn" data-type="information"></i>
+        </div>
         <div class="question-area" id="question-area">
         </div>
         <div class="periodic-table">
@@ -141,13 +146,13 @@
 
             <div class= "controls-area">
                 <button type="button" data-type="new-game" class="btn btn--newgame">
-                    <span>New Game</span>
+                    <i class="fas fa-atom"></i><span>New Game</span>
                 </button>
                 <button type="button" data-type="more-lives" class="btn btn--more-lives">
-                    <span>Extra Life <br>(-2 Points)</span>
+                    <i class="fas fa-heart"></i><span>Extra Life <br></span>
                 </button>
                 <button type="button" data-type="help" class="btn btn--help">
-                    <span>Help</span>
+                    <i class="fas fa-question-circle"></i><span>Help</span>
                 </button>
             </div>
         </div>
