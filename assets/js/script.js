@@ -80,7 +80,8 @@ function runQuiz () {
     let elementStyles = document.getElementsByClassName("text-symbol");
     for (let elementStyle of elementStyles) {
         elementStyle.setAttribute('data-element-symbol', "?");
-        elementStyle.style.backgroundColor = "grey";
+        elementStyle.style.backgroundImage = 'linear-gradient(to bottom, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 24%,rgba(181,198,208,1) 32%,rgba(224,239,249,1) 100%)';
+        elementStyle.style.color = "black";
     }
     console.table(elementTable);
     tableCheck();
