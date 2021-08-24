@@ -9,8 +9,12 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     margin: 0 26% 0 26%;
-    
+    background-color: white;
    }
+body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
+    background-color: rgb(255, 255, 255);
+}
+
 
 .information-bar {
     width: 100%;
@@ -117,7 +121,7 @@ body {
 
 .game-area {
     position: fixed;
-    padding: 20px 10px 10px 10px;
+    padding: 50px 10px 10px 10px;
 
 }
 

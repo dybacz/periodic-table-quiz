@@ -307,7 +307,7 @@ function youWin() {
 }
 
 function fullScreen() {
-    let gameArea = document.body;
+    let gameArea = document.documentElement;
     if (gameArea.requestFullscreen) {
         gameArea.requestFullscreen();
       } else if (gameArea.webkitRequestFullscreen) { /* Safari */
