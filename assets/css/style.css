@@ -134,7 +134,7 @@ body {
     font-size: 1.9em;
     font-weight: 700;
     text-align: center;
-    line-height: 73px;
+    line-height: 70px;
     margin: 0 1px 0 0;
     color: rgb(0, 0, 0);
 }
@@ -150,7 +150,7 @@ body {
     font-weight: 600;
     color: #000000;
     position: relative;
-    bottom: calc(50% + 32px);
+    bottom: calc(50% + 33px);
     left: 3px;
 }
 
