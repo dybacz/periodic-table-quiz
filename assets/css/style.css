@@ -386,7 +386,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
         grid-template-rows: repeat(7, 55px) 20px 55px 55px;
         grid-template-columns: repeat(18, 50px);
         grid-gap: 0.35em;
-        padding: 15px 12px 5px 12px;
+        padding: 15px 7px 15px 7px;
     }
     
     .element-tile {
