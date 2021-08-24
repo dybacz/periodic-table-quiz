@@ -121,7 +121,8 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 
 .game-area {
     position: fixed;
-    padding: 50px 10px 10px 10px;
+    padding: 0 10px 10px 10px;
+    margin-top: 50px;
 
 }
 
@@ -375,4 +376,66 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     content: '';
     display: table;
     clear: both;
+}
+
+@media only screen and (max-width: 1024px){
+    .game-area{
+        margin-top: 5%;
+    }
+    .periodic-table {
+        grid-template-rows: repeat(7, 55px) 20px 55px 55px;
+        grid-template-columns: repeat(18, 50px);
+        grid-gap: 0.35em;
+        padding: 15px 12px 5px 12px;
+    }
+    
+    .element-tile {
+        width: 50px;
+        height: 55px;
+        font-size: 1.2em;
+    }
+    
+    
+    .element-tile p {
+        height: 54px;
+        font-size: 1.7em;
+        font-weight: 700;
+        line-height: 60px;
+    }
+
+    .question-area {
+        left: calc(100% / 2 - 240px);
+        top: calc(50% - 327px);
+    }
+
+    .information-bar {
+        box-sizing: border-box;
+        padding: 15px 10px 10px 10px;
+    }
+
+    .btn {
+        width: 120px;
+        font-size: 1.1em;
+    }
+
+    .toolbar {
+        right: 125px;
+    }
+
+    .toolbar > i {
+        font-size: 2.5em;
+    }
+
+    .element-tile::after {
+    content: "" attr(data-element-number) "";
+    font-size: 0.75em;
+    font-weight: 500;
+    color: #000000;
+    position: relative;
+    bottom: calc(50% + 31px);
+    left: 1px;
+    }
+    .score-area > p {
+        font-size: 1.5em;
+    }
 }
