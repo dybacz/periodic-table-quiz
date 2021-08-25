@@ -33,13 +33,13 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 
 
 .question-area {
-    position: absolute;
+    position: fixed;
     height: 160px;
     width: 200px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(158, 158, 158);
-    left: calc(100% / 2 - 270px);
-    top: calc(50% - 350px);
+    left: calc(100% / 2 - 273px);
+    top: calc(50% - 475px);
     border-radius: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -408,7 +408,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 
     .question-area {
         left: calc(100% / 2 - 240px);
-        top: calc(50% - 327px);
+        top: calc(50% - 314px);
     }
 
     .information-bar {
@@ -473,7 +473,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 
     .question-area {
         left: calc(100% / 2 - 200px);
-        top: calc(50% - 228px);
+        top: calc(50% - 180px);
         height: 103px;
         width: 158px;
         border-radius: 20px;
@@ -614,7 +614,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     }
 
     .question-area {
-        top: calc(50% - 221px);
+        top: calc(50% - 174px);
     }
 
     .alert-box {
