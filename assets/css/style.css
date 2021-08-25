@@ -616,4 +616,8 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     .question-area {
         top: calc(50% - 221px);
     }
+
+    .alert-box {
+        top: calc(100% / 2 - 160px);
+    }
 }
