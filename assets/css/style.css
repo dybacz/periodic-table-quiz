@@ -588,7 +588,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
         font-weight: 600;
     }
 }
-@media only screen and (max-width: 760px){
+@media only screen and (max-width: 780px){
     .information-bar {
         top: -83px;
     }
@@ -606,7 +606,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     border-radius: 5px;
     }
     .score-area > p {
-        font-size: 0.2em;
+        font-size: 0.8em;
     }
 
     .element-tile::after {
