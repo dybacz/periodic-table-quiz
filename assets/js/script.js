@@ -270,10 +270,9 @@ function openHelp() {
         <li>If incorrect you will lose a life</li><br>
     </ul>
     <p>Can you remember where every element is on the periodic table?</p><br>
-    <p>TIP: Extra Life costs 2 points!</p>
-    <p>If playing on mobile, use fullscreen mode.</p>
-    <br>
-    Good Luck<br>
+    <p>TIP: Extra Life costs 2 points!</p><br>
+    If playing on mobile, use Fullscreen mode.<br>
+    Good Luck!
     `;
     alertBox(helpTitle, helpText, "red");
 }
