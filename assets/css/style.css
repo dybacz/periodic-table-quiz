@@ -606,7 +606,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     border-radius: 5px;
     }
     .score-area > p {
-        font-size: 0.8em;
+        font-size: 0.2em;
     }
 
     .element-tile::after {
