@@ -234,7 +234,7 @@ function alertBox (alertTitle, alertMessage, colour) {
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length;
-    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd - 2);
+    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd - 3);
     createBox.innerHTML = `<div class="alert-box">
                                 <h1>${alertTitle}</h1>
                                 ${alertMessage}
@@ -253,7 +253,7 @@ function closeAlert() {
     let currentAlert = document.getElementsByClassName('underlay');
     currentAlert[0].parentNode.removeChild(currentAlert[0]);
     let styleSheet = document.styleSheets[0];
-    let styleSheetEnd = styleSheet.cssRules.length - 3;
+    let styleSheetEnd = styleSheet.cssRules.length - 4;
     styleSheet.deleteRule(styleSheetEnd);
     console.log(styleSheet);
 }

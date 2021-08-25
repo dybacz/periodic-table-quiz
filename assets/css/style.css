@@ -588,3 +588,28 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
         font-weight: 600;
     }
 }
+@media only screen and (max-width: 740px){
+    .information-bar {
+        top: -83px;
+    }
+
+    .btn{
+        font-size: 0.65em;
+        height: 27px;
+        margin-bottom: 1.5px;
+    } 
+    .periodic-table{
+    grid-template-rows: repeat(7, 33px) 4px 33px 33px;
+    grid-template-columns: repeat(18, 35px);
+    grid-gap: 0.35em;
+    padding: 2px 7px 2px 7px;
+    border-radius: 5px;
+    }
+    .score-area > p {
+        font-size: 0.8em;
+    }
+
+    .element-tile::after {
+        top: calc(50% - 55px);
+    }
+}
