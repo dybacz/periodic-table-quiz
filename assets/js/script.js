@@ -260,7 +260,7 @@ function closeAlert() {
 
 function openHelp() {
     let helpTitle = "Help";
-    let helpText = `<br>
+    let helpText = `
     <h3>How to play:</h3>
 
     <p>Your task is to reveal all the elements in the periodic table and score as many points as possible.</p>
@@ -270,8 +270,8 @@ function openHelp() {
         <li>If incorrect you will lose a life</li><br>
     </ul>
     <p>Can you remember where every element is on the periodic table?</p><br>
-    <p>TIP: If playing on mobile, use fullscreen mode.</p>
-    <p>Extra Life = Points!</p>
+    <p>TIP: Extra Life costs 2 points!</p>
+    <p>If playing on mobile, use fullscreen mode.</p>
     <br>
     Good Luck<br>
     `;
