@@ -590,7 +590,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 }
 @media only screen and (max-width: 780px){
     .information-bar {
-        top: -86px;
+        top: -87px;
     }
 
     .btn{
