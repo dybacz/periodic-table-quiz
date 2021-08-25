@@ -612,4 +612,8 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     .element-tile::after {
         top: calc(50% - 55px);
     }
+
+    .question-area {
+        top: calc(50% - 221px);
+    }
 }
