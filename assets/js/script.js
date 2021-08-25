@@ -287,8 +287,8 @@ function openInformation() {
     </p>
     <p style="text-align:center; padding-bottom:10px;">
         <span>Email: <a href="mailto:jdybacz@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></span>
-        <span>GitHub: <a href="https://github.com/dybacz" target="_blank"><i class="fab fa-linkedin"></i></a></span>
-        <span>LinkenIn:<a href="https://www.linkedin.com/in/james-dybacz/" target="_blank"><i class="fab fa-github"></i></a></span>
+        <span>GitHub: <a href="https://github.com/dybacz" target="_blank"><i class="fab fa-github"></i></a></span>
+        <span>LinkenIn:<a href="https://www.linkedin.com/in/james-dybacz/" target="_blank"><i class="fab fa-linkedin"></i></a></span>
     </p>
     <p style="text-align:center;">
         <a href="https://jigsaw.w3.org/css-validator/check/referer">
