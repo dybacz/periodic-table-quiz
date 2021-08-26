@@ -438,7 +438,7 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
     font-size: 1.6em;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 40px;
+    padding: 0 20px;
  }
 
  .overlay > h2 {
