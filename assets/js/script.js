@@ -8,6 +8,8 @@ var elementTable = [];
 /*Event Listner - After all DOM Content loaded, eventlisteners for buttons intitated then game inititated*/
 document.addEventListener("DOMContentLoaded",function () {
 
+    screenSizeListner(); // Call listener function at run time
+
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         button.addEventListener("click", afterClickButtons, true);
@@ -331,3 +333,30 @@ function closeFullScreen() {
     let fullScreenBtn = document.getElementsByClassName("toolbar-btn")[0];
       fullScreenBtn.setAttribute('data-type', "full-screen");
     }
+
+    function screenSizeListner () {
+        let screenSize = window.matchMedia("(max-width: 639px)")
+        screenSize.addListener(rotateScreenAlert) // Attach listener function on state changes
+        rotateScreenAlert(screenSize)
+    }
+
+    function rotateScreenAlert(screenSize) {
+        
+    if (screenSize.matches) { // If media query matches
+        let createBox = document.createElement('div');
+        createBox.innerHTML = `<h1>This content does not fit</h1>
+                               <img src="assets/images/orientation_rotation_screen_icon.svg" alt="">
+                               <h2>Please rotate your device landscape</h2>`;
+        createBox.classList.add('overlay'); 
+        let parent = document.getElementsByClassName("game-area")[0].parentNode;
+        parent.insertBefore(createBox, parent.childNodes[0]);
+    } else {
+        let currentAlert = document.getElementsByClassName('overlay');
+        currentAlert[0].remove();
+    }
+    }
+      
+     
+      
+      
+      
