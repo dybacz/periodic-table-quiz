@@ -431,12 +431,14 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 }
  .overlay > h1 {
     text-align: center;
-    padding: 2% 0
+    padding: 2% 0;
+    font-weight: 600;
  }
 
  .overlay > h2 {
     text-align: center;
-    padding: 4% 0
+    padding: 4% 0;
+    font-weight: 600;
  }
 
 @media only screen and (max-width: 1024px){
