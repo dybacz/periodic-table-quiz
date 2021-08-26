@@ -427,18 +427,23 @@ body:fullscreen, body:-webkit-full-screen, body:-moz-full-scree {
 .overlay > img {
     width: 100%;
     height: 50%;
-    padding: 5% 0;
+    position: fixed;
+    top: 29%;
 }
  .overlay > h1 {
     text-align: center;
-    padding: 2% 0;
     font-weight: 600;
+    position: fixed;
+    top: 15px;
+    width: 100%;
  }
 
  .overlay > h2 {
     text-align: center;
-    padding: 4% 0;
     font-weight: 600;
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
  }
 
 @media only screen and (max-width: 1024px){
