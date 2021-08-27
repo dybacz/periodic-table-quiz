@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded",function () {
     for (let toolbar of toolbars) {
         toolbar.addEventListener("click", afterClickButtons, true);
     }
-    initiateGame();
+    alertBoxNewGame("Welcome");
 });
 
 function afterClickButtons() {
     if (this.getAttribute("data-type") === "new-game") {
-        newGame();
+        alertBoxNewGame("New Game");
     } else if (this.getAttribute("data-type") === "more-lives"){
         moreLives();
     } else if (this.getAttribute("data-type") === "help"){
@@ -45,8 +45,10 @@ function afterClickButtons() {
  * Extracts element data from attributes of html object send to addToArray function 
  * After iteration complete Quiz is run.
  */
-function initiateGame() {
-    
+function initiateGame(playerName) {
+    console.log(playerName)
+    document.getElementById("name").innerText = playerName;
+ 
     let newLives = "3";
     document.getElementById("lives").innerText = newLives;
 
@@ -96,7 +98,6 @@ function runQuiz () {
         elementStyle.style.backgroundImage = 'linear-gradient(to bottom, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 24%,rgba(181,198,208,1) 32%,rgba(224,239,249,1) 100%)';
         elementStyle.style.color = "black";
     }
-    console.table(elementTable);
     tableCheck();
 }
 
@@ -118,7 +119,7 @@ function runQuiz () {
  * If not you win.
  */
 function tableCheck() {
-    if (elementTable.length > 0) {
+    if (elementTable.length = 0) {
         nextChemicalElementTile();
     } else {
         youWin();
@@ -194,14 +195,14 @@ function decreaseLives () {
     }
 
 
-function newGame () {
+function newGame (playerName) {
     if (elementTable.length > 0) {
         elementTable = [];
         let currentElement = document.getElementsByClassName('new-ele-bdr');
         currentElement[0].parentNode.removeChild(currentElement[0]);
-        initiateGame();
+        initiateGame(playerName);
     } else {
-        initiateGame();
+        initiateGame(playerName);
     }
 }
 
@@ -251,7 +252,49 @@ function alertBox (alertTitle, alertMessage, colour) {
 
 }
 
+function alertBoxNewGame (alertTitle) {
+    
+    let createBox = document.createElement('div');
+    createBox.innerHTML = `<div class="alert-box">
+                                <h1 style="background-color:green ; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;">${alertTitle}</h1>
+                                <br><p style="text-align:center;">Enter your name and start a new game!</p>
+                                <label for="user-name">Player Name:</label>
+                                <input type="text" id="user-name" name="user-name">
+                                <button type="button" data-type="close-alert" class="btn btn--close btn--new" >
+                                    <span>Start</span>
+                                </button>
+                            </div>`;
+    createBox.classList.add('underlay'); 
+    let parent = document.getElementsByClassName("game-area")[0].parentNode;
+    parent.insertBefore(createBox, parent.childNodes[0]);
+    document.getElementsByClassName('btn--close')[0].addEventListener("click", closeAlertNewGame);
+    document.getElementById('user-name').onkeypress = function(event){
+        let key = event.keyCode;
+        return ((key >= 65 && key <= 90) || (key >= 95 && key <= 122) || key == 32);
+    };
+
+}
+
+function closeAlertNewGame() {
+    let playerName = document.getElementById('user-name').value;
+    let currentAlert = document.getElementsByClassName('underlay');
+    let styleSheet = document.styleSheets[0];
+    let styleSheetEnd = styleSheet.cssRules.length - 6;
+
+    if (playerName == "") {
+        document.getElementsByTagName('label')[0].innerText = "No name entered";
+    } else if (playerName.length >8 ){
+        document.getElementsByTagName('label')[0].innerText = "Name entered too long";
+    } else {
+        document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlertNewGame);
+        currentAlert[0].parentNode.removeChild(currentAlert[0]);
+        styleSheet.deleteRule(styleSheetEnd);
+        newGame(playerName);
+    };
+}
+
 function closeAlert() {
+    document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlert);
     let currentAlert = document.getElementsByClassName('underlay');
     currentAlert[0].parentNode.removeChild(currentAlert[0]);
     let styleSheet = document.styleSheets[0];
@@ -305,8 +348,12 @@ function openInformation() {
 }
 
 function youWin() {
+    let playerName = document.getElementById("name").innerText;
     let finalScore = parseInt(document.getElementById('score').innerText);
-        alertBox("Quiz Completed", `<p>Congratulations! you completed the table with a score of ${finalScore}</p>`, "green");
+        alertBox("Quiz Completed", `<img src="assets/images/well_done.svg" alt="well done celebration image">
+                                    <h2>Congratulations ${playerName}!</h2><br>
+                                    <span>You know your stuff!</span><br>
+                                    </p>You reassembled the periodic table and finished with ${finalScore} points.</p>`, "green");
 }
 
 function fullScreen() {
@@ -337,7 +384,6 @@ function closeFullScreen() {
     function screenSizeListner () {
         let screenSize = window.matchMedia("(max-width: 639px)")
         screenSize.addListener(rotateScreenAlert) // Attach listener function on state changes
-        rotateScreenAlert(screenSize)
     }
 
     function rotateScreenAlert(screenSize) {
@@ -345,7 +391,7 @@ function closeFullScreen() {
     if (screenSize.matches) { // If media query matches
         let createBox = document.createElement('div');
         createBox.innerHTML = `<h1>This content does not fit</h1>
-                               <img src="assets/images/orientation_rotation_screen_icon.svg" alt="">
+                               <img src="assets/images/orientation_rotation_screen_icon.svg" alt="Rotate Screen Orientation Image">
                                <h2>Please rotate your device landscape</h2>`;
         createBox.classList.add('overlay'); 
         let parent = document.getElementsByClassName("game-area")[0].parentNode;
