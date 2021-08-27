@@ -214,9 +214,13 @@ function moreLives () {
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
-        alertBox("Error", `You are unable to buy more lives, you have only ${currentScore} point to spend`, "red");
+        alertBox("Error", `<br>
+                            You are unable to buy more lives,<br> you have only ${currentScore} point to spend
+                            <br>`, "red");
     }  else {
-        alertBox("Error", `You are unable to buy more lives, you have ${currentScore} points to spend`, "red");
+        alertBox("Error", `<br>
+                            You are unable to buy more lives,<br> you have ${currentScore} points to spend
+                            <br>`, "red");
     }
 }
 function gameOver () {
