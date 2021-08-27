@@ -1,104 +1,147 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Periodic table quiz
 
-Welcome dybacz,
+The periodic table quiz is a game designed to help students and academics learn and improve there knowledge and ordering of the Periodic table.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+This game was designed to demonstrate how pure JavaScript works in a real-world context. The site will be targeted toward people who love to implement more advanced JavaScript concepts but also Chemsitry, puzzles and memory games. This game is a fully responsive JavaScript quiz game that will allow the user to put there knowledge and memory to the test and reassemble the table.
 
-## Gitpod Reminders
+- The user begin with 5 lives and will be given one element at a time and are tasked with clicking the correct place to which that element belongs in the table. 
+- If correct the user will be rewarded with a point but if incorrect the user will lose a life.
+- The order of the elements a user will recieve is random and therefor different for every game and user.
+- The user have the ability to purchase more lives but at a cost of 2 points per life.
+- Once the the user have completed the table they will be informed of there final score.
+- Maximum score total with no extra lives needed is equal to 118.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+![Responsive Mockup](assets/images/readme/periodic_table_mockup.png)
 
-`python3 -m http.server`
+## Features 
 
-A blue button should appear to click: _Make Public_,
+### Existing Features
 
-Another blue button should appear to click: _Open Browser_.
+- __The Game Area__
+  - This section is the game and contains all elements the user needs to play. The user is able to see the periodic table, scores, lives, toolbar and buttons.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+![Game](assets/images/readme/game_area.png)
 
-A blue button should appear to click: _Make Public_,
+- __The Periodic Table__ 
+  - Featured at the top of the page, the Love Maths logo and heading is easy to see for the user. Upon viewing the page, the user will be able to see the name of the game.
 
-Another blue button should appear to click: _Open Browser_.
+![Periodic Table](assets/images/readme/periodic_table.png)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- __The New Element Area__
+  - This area displays the current element tile, chemical symbol and the name of that element. The user must guess where they think this element belongs in the table
+  - Once guessed correctly, a new element will be loaded into the tile.
 
-To log into the Heroku toolbelt CLI:
+![Current Element Tile](assets/images/readme/current_element_tile.png)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- __The Toolbar__
+  - This toolbar is located in the top right of the game.
+  - The two buttons allow the user to enter full screen mode and access 'about' information through an alert.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+![Toolbar](assets/images/readme/toolbar.png)
 
-------
+- __The Score Area__
 
-## Release History
+  - This section will allow the user to see exactly how many points and lives they have. 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+![Score Area](assets/images/readme/score_area.png)
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+__The Buttons__
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+  - This section contains 3 buttons.
+  - New Game - Allows the user to start a new game. On click an new game alert is displayed. 
+  - Extra Life - Allows the user to 'purchase' an extra life. On click Add Lives alert is displayed. 
+  - Help - Allows the user to read the rules of the game. On click help alert is displayed.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+![Buttons](assets/images/readme/buttons.png)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- __The Alert Box__
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+  - About alert - Displayed on click of question mark icon in toolbar. Contains about information for game.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+![About Alert](assets/images/readme/about_alert.png)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+  - Help Alert - Contains rules of the game.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![Help Alert](assets/images/readme/help_alert.png)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+  - Add lives Alert - Confirmation message of extra life.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+![Add Lives Alert](assets/images/readme/add_lives_alert.png)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+  - Error Lives Alert - Error if the user does not have enough points to 'purchase' an extra life.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+![Error Lives Alert](assets/images/readme/error_lives_alert.png)
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+For some/all of your features, you may choose to reference the specific project files that implement them.
 
-------
+In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
-## FAQ about the uptime script
+- __The New Game Alert__
 
-**Why have you added this script?**
+  - Start a new game by requiring the user to enter there name.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+![New Game Alert](assets/images/readme/new_game_alert.png)
 
-**How will this affect me?**
+- __The 'Content does not fit'Alert__
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+  - If a users device width is too small (< 640px) an alert is displayed. This alert requires the user to enter landscape mode to access game.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+![Does not fit alert](assets/images/readme/does_not_fit_alert.png)
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Features Left to Implement
 
-**So….?**
+- __Variable Quiz Length__
+    - This feature would allow the use to select how many tiles in the periodic table are already solved.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+- __Animation__
+    - Add animations that move the main tile to the position it belongs to in the table upon correct answer.
 
-**Can I opt out?**
+## Testing 
+- I tested this game works in different browsers: Chrome, Firefox, Edge.
+- I confirmed that the game results are always correct.
+- I confirmed that the project is responsive, looks good and functions on all standard screen sizes using the devtools device toolbar.
+- I confirmed the name entry input works; requires an entry into the field, accepts only characters (Desktop). Start button works and user name is added to the DOM.
+- I confirmed the colours and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
+![Lighthouse Results](assets/images/readme/lighthouse_results.png)
+- I confirmed that the table, buttons, element tiles, alerts, information text and score area are all readable and easy to understand.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+### Validator Testing 
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+- HTML
+    - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcode-institute-org.github.io%2Flove-maths%2F)
+- CSS
+    - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvalidator.w3.org%2Fnu%2F%3Fdoc%3Dhttps%253A%252F%252Fcode-institute-org.github.io%252Flove-maths%252F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+- JavaScript
+    - No errors were found when passing through the official [Jshint validator](https://jshint.com/)
+      - The following metrics were returned: 
+      - There are 11 functions in this file.
+      - Function with the largest signature takes 2 arguments, while the median is 0.
+      - Largest function has 10 statements in it, while the median is 3.
+      - The most complex function has a cyclomatic complexity value of 4 while the median is 2.
 
-**Anything more?**
+### Unfixed Bugs
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+No unfixed Bugs.
 
----
+## Deployment
 
-Happy coding!
+This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub) 
+
+- The site was deployed to GitHub pages. The steps to deploy are as follows: 
+  - In the GitHub repository, navigate to the Settings tab 
+  - From the source section drop-down menu, select the Master Branch
+  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
+
+The live link can be found here - https://dybacz.github.io/periodic-table-quiz/
+
+
+## Credits 
+
+### Content 
+
+- The icons used in the buttons and the toolbar were taken from [Font Awesome](https://fontawesome.com/)
+
+### Media
+
+- The image used for the favicon and username input textbox are from [Icons-icons](https://icon-icons.com/icon/atom-sciencie-scientific/53030).
+- The image used for the 'This content does not fit' alert are from [Iconefinder](https://www.iconfinder.com/icons/326583/orientation_rotation_screen_icon)
