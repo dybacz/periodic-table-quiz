@@ -529,7 +529,7 @@ body {
     font-weight: 500;
     color: #000000;
     position: relative;
-    bottom: calc(50% + 31px);
+    bottom: calc(50% + 30px);
     left: 1px;
     }
     .score-area > p {

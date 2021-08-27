@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded",function () {
     for (let toolbar of toolbars) {
         toolbar.addEventListener("click", afterClickButtons, true);
     }
+    alertBoxNewGame("Welcome");
     screenSizeListner(); // Call listener function at run time
 
 });
