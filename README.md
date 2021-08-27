@@ -2,13 +2,14 @@
 
 The periodic table quiz is a game designed to help students and academics learn and improve there knowledge and ordering of the Periodic table.
 
-This game was designed to demonstrate how pure JavaScript works in a real-world context. The site will be targeted toward people who love to implement more advanced JavaScript concepts but also Chemsitry, puzzles and memory games. This game is a fully responsive JavaScript quiz game that will allow the user to put there knowledge and memory to the test and reassemble the table.
+This game was designed to demonstrate how pure JavaScript works in a real-world context. The site will be targeted toward people who love to implement more advanced JavaScript concepts but also Chemsitry, puzzles and memory games. This game is a fully responsive JavaScript quiz that allows the user to put there knowledge and memory to the test and reassemble the Periodic Table.
 
-- The user begin with 5 lives and will be given one element at a time and are tasked with clicking the correct place to which that element belongs in the table. 
+- The user begins with 5 lives and will be given one element at a time
+- The user is then tasked with clicking the correct place to which that element belongs in the table. 
 - If correct the user will be rewarded with a point but if incorrect the user will lose a life.
-- The order of the elements a user will recieve is random and therefor different for every game and user.
-- The user have the ability to purchase more lives but at a cost of 2 points per life.
-- Once the the user have completed the table they will be informed of there final score.
+- The order of the elements a user will recieve is random and therefore different for every game and user.
+- The user has the ability to purchase more lives but at a cost of 2 points per life.
+- Once the the user has completed the table they will be informed of there final score.
 - Maximum score total with no extra lives needed is equal to 118.
 
 ![Responsive Mockup](assets/images/readme/periodic_table_mockup.png)
