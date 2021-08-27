@@ -1,12 +1,12 @@
 /*jshint esversion: 6 */
 
-/* Array of all html object tiles in the periodic table*/
+/* Array of all html object tiles(elements) in the periodic table*/
 const elements = document.getElementsByClassName("element-tile");
 
 /* Global Variable Array for 2.dimenseional list of elements, symbols, and corresponding number to be quizzed on*/
 var elementTable = [];
 
-/*Event Listner - After all DOM Content loaded, eventlisteners for buttons intitated then game inititated*/
+/*Event Listner - After all DOM Content loaded, eventlisteners for buttons + toolbar intitated then new game alert box initiated*/
 document.addEventListener("DOMContentLoaded",function () {
 
     
@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded",function () {
     screenSizeListner(); // Call listener function at run time
 
 });
+
+/**
+ * Called upon from event listener.
+ * Extracts attribute data-type from clicked button, data-type used to execute button functionality.
+ */
 
 function afterClickButtons() {
     if (this.getAttribute("data-type") === "new-game") {
@@ -42,7 +47,7 @@ function afterClickButtons() {
 
 /** Initiates New Game
  * Sets Initial value for lives and points.
- * Iterates through Constant table of html object for each element tile,
+ * Iterates through constant table of html object for each element tile,
  * Adds event listener for clicks on each element tile.
  * Extracts element data from attributes of html object send to addToArray function 
  * After iteration complete Quiz is run.
@@ -50,7 +55,7 @@ function afterClickButtons() {
 function initiateGame(playerName) {
     document.getElementById("name").innerText = playerName;
  
-    let newLives = "3";
+    let newLives = "5";
     document.getElementById("lives").innerText = newLives;
 
     let newScore = "0";
@@ -70,6 +75,7 @@ function initiateGame(playerName) {
     runQuiz();
 }
 /**
+ * Called upon from event listener.
  * Extracts attribute from clicked tile, data sent to be checked for right answer.
  * Extracts which html element was clicked. Infor sent on so event listener can be removed.
  */
@@ -77,29 +83,6 @@ function afterClickElements (){
     let userAnswer = this.getAttribute("data-element-number");
     let clickedElement = this;
     checkClick(userAnswer, clickedElement);
-}
-
-/**
- *  Function to add each Element name, number and symbol to an array.
- */
-
-function addToArray (name, num, symbol) {
-    elementTable.push([name, num, symbol]);
-}
-
-/**
- * Quiz begins.
- * Iterates through all element tiles on periodic table and changes visible symbols to '?'
- * While also changing all background colours to grey.
- */
-function runQuiz () {
-    let elementStyles = document.getElementsByClassName("text-symbol");
-    for (let elementStyle of elementStyles) {
-        elementStyle.setAttribute('data-element-symbol', "?");
-        elementStyle.style.backgroundImage = 'linear-gradient(to bottom, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 24%,rgba(181,198,208,1) 32%,rgba(224,239,249,1) 100%)';
-        elementStyle.style.color = "black";
-    }
-    tableCheck();
 }
 
 /**
@@ -113,6 +96,29 @@ function runQuiz () {
         elementTable[i] = elementTable[j];
         elementTable[j] = k;
       }
+}
+
+/**
+ *  Add each Element name, number and symbol to an array, extracted from html object data type.
+ */
+
+function addToArray (name, num, symbol) {
+    elementTable.push([name, num, symbol]);
+}
+
+/**
+ * Quiz begins.
+ * Iterates through all element tiles on periodic table and changes visible symbols to '?'
+ * While also changing all background colour.
+ */
+function runQuiz () {
+    let elementStyles = document.getElementsByClassName("text-symbol");
+    for (let elementStyle of elementStyles) {
+        elementStyle.setAttribute('data-element-symbol', "?");
+        elementStyle.style.backgroundImage = 'linear-gradient(to bottom, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 24%,rgba(181,198,208,1) 32%,rgba(224,239,249,1) 100%)';
+        elementStyle.style.color = "black";
+    }
+    tableCheck();
 }
 
 /**
@@ -143,44 +149,58 @@ function nextChemicalElementTile() {
         document.getElementById("question-area").appendChild(nextChemicalElementTile); 
 }
 
-
-
+/**
+ * Check the object clicked matches the current element the user is asked to locate.
+ */
 function checkClick (userAnswer, clickedElement) {
     if (elementTable.length > 0) {
         let correctAnswer = elementTable[0][1];
         if  (userAnswer === correctAnswer) {
-                    incrementScore(); 
-                    revealElement(clickedElement);
-                    clickedElement.removeEventListener("click", afterClickElements, true);
-                } else {
-                    decreaseLives();
-                }
+                incrementScore(); 
+                revealElement(clickedElement);
+                clickedElement.removeEventListener("click", afterClickElements, true);
+            } else {
+                decreaseLives();
             }
-    }
+        }
+}
 
+/**
+ * If the clicked object matches the current element, the clicked object is revealed
+ */
 function revealElement (clickedElement) {
     let eleSym = clickedElement.getAttribute("data-element-symbol");
     clickedElement.innerHTML = `<p class="text-symbol" data-element-symbol="${eleSym}"></p>`;
     clearAnswer();
 }
-
+/**
+ * Removes top line in shuffled array of elements.
+ */
 function clearAnswer () {
     elementTable.splice(0, 1);
-    console.table(elementTable);
     removeElement();
 }
 
+/**
+ * Removes the div containing the current element tile the checks table again
+ */
 function removeElement () {
     let currentElement = document.getElementsByClassName('new-ele-bdr');
     currentElement[0].parentNode.removeChild(currentElement[0]);
     tableCheck();
 }
 
+/**
+ * Increases score text on DOM by +1
+ */
 function incrementScore () {
     let oldScore = parseInt(document.getElementById('score').innerText);
     document.getElementById("score").innerText = ++oldScore;
 }
 
+/**
+ * Decreases lives text on DOM by -1
+ */
 function decreaseLives () {
     let oldLives = parseInt(document.getElementById('lives').innerText);
     if (oldLives > 1) {
@@ -192,9 +212,11 @@ function decreaseLives () {
     } else {
         gameOver();
     }
-    }
+}
 
-
+/**
+ * Starts new game. Checks elementTable legnth, if > 0 (contains previous games data) reset to empty and removed div containing current element tile.
+ */
 function newGame (playerName) {
     if (elementTable.length > 0) {
         elementTable = [];
@@ -206,6 +228,10 @@ function newGame (playerName) {
     }
 }
 
+/**
+ * Checks if user points >= 2. If so Add lives alert prompt. 
+ * else error lives alert. 2 error alerts for 1 point and 0 points.
+ */
 function moreLives () {
     let currentLives = parseInt(document.getElementById('lives').innerText);
     let currentScore = parseInt(document.getElementById('score').innerText);
@@ -224,6 +250,10 @@ function moreLives () {
                             <br>`, "red");
     }
 }
+
+/**
+ * Game over, remove event listners for extra life button and all element tiles on table.
+ */
 function gameOver () {
     
     for (let element of elements) {
@@ -237,6 +267,9 @@ function gameOver () {
     alertBox("Game Over", `<br> you finished with ${finalScore} points`, "red");
 }
 
+/**
+ * Creates a general alert box and underlay in new div at index [0] of DOM body
+ */
 function alertBox (alertTitle, alertMessage, colour) {
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
@@ -256,6 +289,9 @@ function alertBox (alertTitle, alertMessage, colour) {
 
 }
 
+/**
+ * Creates New game alert box containg text input field for user name and underlay in new div at index [0] of DOM body
+ */
 function alertBoxNewGame (alertTitle) {
     
     let createBox = document.createElement('div');
@@ -280,6 +316,9 @@ function alertBoxNewGame (alertTitle) {
 
 }
 
+/**
+ * Closes new game alert box
+ */
 function closeAlertNewGame() {
     let playerName = document.getElementById('user-name').value;
     let currentAlert = document.getElementsByClassName('underlay');
@@ -295,6 +334,9 @@ function closeAlertNewGame() {
     }
 }
 
+/**
+ * Closes general alert box
+ */
 function closeAlert() {
     document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlert);
     let currentAlert = document.getElementsByClassName('underlay');
@@ -304,6 +346,9 @@ function closeAlert() {
     styleSheet.deleteRule(styleSheetEnd);
 }
 
+/**
+ * Inner html text of help alert that is passed through alertBox
+ */
 function openHelp() {
     let helpTitle = "Help";
     let helpText = `
@@ -311,9 +356,9 @@ function openHelp() {
 
     <p>Your task is to reveal all the elements in the periodic table and score as many points as possible.</p>
     <ul>
-        <li>Click/Touch where you think that element is?</li><br>
-        <li>If correct you will be rewarded with 1 point!</li><br>
-        <li>If incorrect you will lose a life</li><br>
+        <li>Click/Touch where you think that element belongs?</li><br>
+        <li>If you are correct you will be rewarded 1 point!</li><br>
+        <li>If you are incorrect you will lose a life.</li><br>
     </ul>
     <p>Can you remember where every element is on the periodic table?</p><br>
     <p>TIP: Extra Life costs 2 points!</p><br>
@@ -323,6 +368,9 @@ function openHelp() {
     alertBox(helpTitle, helpText, "red");
 }
 
+/**
+ * Inner html text of information alert that is passed through alertBox
+ */
 function openInformation() {
     let informationTitle = "About";
     let informationText = `<br>
@@ -348,6 +396,9 @@ function openInformation() {
     alertBox(informationTitle, informationText, "grey");
 }
 
+/**
+ * Stores player name and final score from DOM. Passed through alertBox function.
+ */
 function youWin() {
     let playerName = document.getElementById("name").innerText;
     let finalScore = parseInt(document.getElementById('score').innerText);
@@ -357,6 +408,9 @@ function youWin() {
                                     </p>You reassembled the periodic table and finished with ${finalScore} points.</p>`, "green");
 }
 
+/**
+ * Forces fullscreen
+ */
 function fullScreen() {
     let gameArea = document.documentElement;
     if (gameArea.requestFullscreen) {
@@ -370,6 +424,9 @@ function fullScreen() {
       fullScreenBtn.setAttribute('data-type', "full-screen-on");
 }
 
+/**
+ * Closes fullscreen
+ */
 function closeFullScreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -378,31 +435,41 @@ function closeFullScreen() {
     } else if (document.msExitFullscreen) { /* IE11 */
       document.msExitFullscreen();
     }
+
     let fullScreenBtn = document.getElementsByClassName("toolbar-btn")[0];
       fullScreenBtn.setAttribute('data-type', "full-screen");
-    }
+}
 
-    function screenSizeListner () {
-        let screenSize = window.matchMedia("(max-width: 639px)");
-        screenSize.addListener(rotateScreenAlert); // Attach listener function on state changes
-        rotateScreenAlert(screenSize);
-    }
+/**
+ * Sets media query as screenSize. 
+ * Adds listner to media query.
+ * passes media query to rotateScreenAlert
+ */
+function screenSizeListner () {
+    let screenSize = window.matchMedia("(max-width: 639px)");
+    screenSize.addListener(rotateScreenAlert); // Attach listener function on state changes
+    rotateScreenAlert(screenSize);
+}
 
-    function rotateScreenAlert(screenSize) {
-        
-        if (screenSize.matches) { // If media query matches
-            let createBox = document.createElement('div');
-            createBox.innerHTML = `<h1>This content does not fit</h1>
-                                <img src="assets/images/orientation_rotation_screen_icon.svg" alt="Rotate Screen Orientation Image">
-                                <h2>Please rotate your device landscape</h2>`;
-            createBox.classList.add('overlay'); 
-            let parent = document.getElementsByClassName("game-area")[0].parentNode;
-            parent.insertBefore(createBox, parent.childNodes[0]);
-        } else {
-            let currentAlert = document.getElementsByClassName('overlay');
-            if (currentAlert.length > 0) {
-                currentAlert[0].remove();
-            }
-            return;
+/**
+ * Checks screen size. Generates alert if screen size matches media query passed to function as screenSize.
+ * If screen size changes to not match, alert removed.
+ */
+function rotateScreenAlert(screenSize) {
+    
+    if (screenSize.matches) { // If media query matches
+        let createBox = document.createElement('div');
+        createBox.innerHTML = `<h1>This content does not fit</h1>
+                            <img src="assets/images/orientation_rotation_screen_icon.svg" alt="Rotate Screen Orientation Image">
+                            <h2>Please rotate your device landscape</h2>`;
+        createBox.classList.add('overlay'); 
+        let parent = document.getElementsByClassName("game-area")[0].parentNode;
+        parent.insertBefore(createBox, parent.childNodes[0]);
+    } else {
+        let currentAlert = document.getElementsByClassName('overlay');
+        if (currentAlert.length > 0) {
+            currentAlert[0].remove();
         }
+        return;
     }
+}

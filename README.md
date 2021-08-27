@@ -102,6 +102,7 @@ In addition, you may also use this section to discuss plans for additional featu
 - I confirmed that the project is responsive, looks good and functions on all standard screen sizes using the devtools device toolbar.
 - I confirmed the name entry input works; requires an entry into the field, accepts only characters (Desktop). Start button works and user name is added to the DOM.
 - I confirmed the colours and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
+
 ![Lighthouse Results](assets/images/readme/lighthouse_results.png)
 - I confirmed that the table, buttons, element tiles, alerts, information text and score area are all readable and easy to understand.
 
