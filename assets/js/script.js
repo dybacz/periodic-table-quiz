@@ -286,7 +286,7 @@ function closeAlertNewGame() {
 
     if (playerName == "") {
         document.getElementsByTagName('label')[0].innerText = "No name entered";
-    } else if (playerName.length >8 ){
+    } else if (playerName.length > 8){
         document.getElementsByTagName('label')[0].innerText = "Name entered too long";
     } else {
         document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlertNewGame);
