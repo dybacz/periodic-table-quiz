@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+window.scrollTo(0,1);
 /* Array of all html object tiles in the periodic table*/
 const elements = document.getElementsByClassName("element-tile");
 
