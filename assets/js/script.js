@@ -8,8 +8,7 @@ var elementTable = [];
 /*Event Listner - After all DOM Content loaded, eventlisteners for buttons intitated then game inititated*/
 document.addEventListener("DOMContentLoaded",function () {
 
-    screenSizeListner(); // Call listener function at run time
-
+    
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         button.addEventListener("click", afterClickButtons, true);
@@ -20,6 +19,8 @@ document.addEventListener("DOMContentLoaded",function () {
         toolbar.addEventListener("click", afterClickButtons, true);
     }
     alertBoxNewGame("Welcome");
+    screenSizeListner(); // Call listener function at run time
+
 });
 
 function afterClickButtons() {
@@ -46,7 +47,6 @@ function afterClickButtons() {
  * After iteration complete Quiz is run.
  */
 function initiateGame(playerName) {
-    console.log(playerName)
     document.getElementById("name").innerText = playerName;
  
     let newLives = "3";
@@ -65,7 +65,7 @@ function initiateGame(playerName) {
         addToArray(eleName, eleNum, eleSym);
     }
 
-    /*shuffleArray();*/
+    shuffleArray();
     runQuiz();
 }
 /**
@@ -119,7 +119,7 @@ function runQuiz () {
  * If not you win.
  */
 function tableCheck() {
-    if (elementTable.length = 0) {
+    if (elementTable.length > 0) {
         nextChemicalElementTile();
     } else {
         youWin();
@@ -149,7 +149,6 @@ function checkClick (userAnswer, clickedElement) {
         let correctAnswer = elementTable[0][1];
         if  (userAnswer === correctAnswer) {
                     incrementScore(); 
-                    console.log(clickedElement);
                     revealElement(clickedElement);
                     clickedElement.removeEventListener("click", afterClickElements, true);
                 } else {
@@ -237,7 +236,7 @@ function alertBox (alertTitle, alertMessage, colour) {
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length;
-    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd -5);
+    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd -4);
     createBox.innerHTML = `<div class="alert-box">
                                 <h1>${alertTitle}</h1>
                                 ${alertMessage}
@@ -257,6 +256,7 @@ function alertBoxNewGame (alertTitle) {
     let createBox = document.createElement('div');
     createBox.innerHTML = `<div class="alert-box">
                                 <h1 style="background-color:green ; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;">${alertTitle}</h1>
+                                <br><p style="text-align:center;">Can you reassemble the periodic table?</p>
                                 <br><p style="text-align:center;">Enter your name and start a new game!</p>
                                 <label for="user-name">Player Name:</label>
                                 <input type="text" id="user-name" name="user-name">
@@ -279,7 +279,7 @@ function closeAlertNewGame() {
     let playerName = document.getElementById('user-name').value;
     let currentAlert = document.getElementsByClassName('underlay');
     let styleSheet = document.styleSheets[0];
-    let styleSheetEnd = styleSheet.cssRules.length - 6;
+    let styleSheetEnd = styleSheet.cssRules.length - 5;
 
     if (playerName == "") {
         document.getElementsByTagName('label')[0].innerText = "No name entered";
@@ -300,7 +300,6 @@ function closeAlert() {
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length - 6;
     styleSheet.deleteRule(styleSheetEnd);
-    console.log(styleSheet);
 }
 
 function openHelp() {
@@ -383,23 +382,27 @@ function closeFullScreen() {
 
     function screenSizeListner () {
         let screenSize = window.matchMedia("(max-width: 639px)")
-        screenSize.addListener(rotateScreenAlert) // Attach listener function on state changes
+        screenSize.addListener(rotateScreenAlert); // Attach listener function on state changes
+        rotateScreenAlert(screenSize)
     }
 
     function rotateScreenAlert(screenSize) {
         
-    if (screenSize.matches) { // If media query matches
-        let createBox = document.createElement('div');
-        createBox.innerHTML = `<h1>This content does not fit</h1>
-                               <img src="assets/images/orientation_rotation_screen_icon.svg" alt="Rotate Screen Orientation Image">
-                               <h2>Please rotate your device landscape</h2>`;
-        createBox.classList.add('overlay'); 
-        let parent = document.getElementsByClassName("game-area")[0].parentNode;
-        parent.insertBefore(createBox, parent.childNodes[0]);
-    } else {
-        let currentAlert = document.getElementsByClassName('overlay');
-        currentAlert[0].remove();
-    }
+        if (screenSize.matches) { // If media query matches
+            let createBox = document.createElement('div');
+            createBox.innerHTML = `<h1>This content does not fit</h1>
+                                <img src="assets/images/orientation_rotation_screen_icon.svg" alt="Rotate Screen Orientation Image">
+                                <h2>Please rotate your device landscape</h2>`;
+            createBox.classList.add('overlay'); 
+            let parent = document.getElementsByClassName("game-area")[0].parentNode;
+            parent.insertBefore(createBox, parent.childNodes[0]);
+        } else {
+            let currentAlert = document.getElementsByClassName('overlay');
+            if (currentAlert.length > 0) {
+                currentAlert[0].remove()
+            }
+            return;
+        }
     }
       
      
