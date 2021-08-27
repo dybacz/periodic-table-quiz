@@ -241,7 +241,7 @@ function alertBox (alertTitle, alertMessage, colour) {
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length;
-    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd -4);
+    styleSheet.insertRule(`.alert-box > h1 {background-color:${colour}; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;}`, styleSheetEnd -5);
     createBox.innerHTML = `<div class="alert-box">
                                 <h1>${alertTitle}</h1>
                                 ${alertMessage}
@@ -283,8 +283,6 @@ function alertBoxNewGame (alertTitle) {
 function closeAlertNewGame() {
     let playerName = document.getElementById('user-name').value;
     let currentAlert = document.getElementsByClassName('underlay');
-    let styleSheet = document.styleSheets[0];
-    let styleSheetEnd = styleSheet.cssRules.length - 5;
 
     if (playerName == "") {
         document.getElementsByTagName('label')[0].innerText = "No name entered";
@@ -293,7 +291,6 @@ function closeAlertNewGame() {
     } else {
         document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlertNewGame);
         currentAlert[0].parentNode.removeChild(currentAlert[0]);
-        styleSheet.deleteRule(styleSheetEnd);
         newGame(playerName);
     }
 }
