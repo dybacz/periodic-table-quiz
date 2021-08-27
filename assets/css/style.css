@@ -28,7 +28,6 @@ body {
     clear: both;
 }
 
-
 .question-area {
     position: fixed;
     height: 160px;
@@ -168,8 +167,6 @@ body {
     margin-left: -4px;
 }
 
-
-
 .periodic-table {
     display: grid;
     grid-template-rows: repeat(7, 65px) 20px 65px 65px;
@@ -212,8 +209,6 @@ body {
 }
 .element-tile p::after  {
     content: "" attr(data-element-symbol) "";
-
-
 }
 
 .element-tile::after {
@@ -229,46 +224,60 @@ body {
 #He, .group1 p, .group2 p {
     background-color: tomato;
 }
+
 .group1 {
     grid-column: 1;
 }
+
 .group2 {
     grid-column: 2;
 }
+
 .group3 p, .group4 p, .group5 p, .group6 p, .group7 p, .group8 p,
 .group9 p, .group10 p, .group11 p, .group12 p {
     background-color: skyblue;
 }
+
 .group3 {
     grid-column: 3;
 }
+
 .group4 {
     grid-column: 4;
 }
+
 .group5 {
     grid-column: 5;
 }
+
 .group6 {
     grid-column: 6;
 }
+
 .group7 {
     grid-column: 7;
 }
+
 .group8 {
     grid-column: 8;
 }
+
 .group9 {
     grid-column: 9;
 }
+
 .group10 {
     grid-column: 10;
 }
+
 .group11 {
     grid-column: 11;
 }
+
 .group12 {
     grid-column: 12;
 }
+
 .group13 p, .group14 p, .group15 p, .group16 p, .group17 p, .group18 p {
     background-color: rgb(253, 255, 113);
 }
@@ -276,18 +285,23 @@ body {
 .group13 {
     grid-column: 13;
 }
+
 .group14 {
     grid-column: 14;
 }
+
 .group15 {
     grid-column: 15;
 }
+
 .group16 {
     grid-column: 16;
 }
+
 .group17 {
     grid-column: 17;
 }
+
 .group18 {
     grid-column: 18;
 }
@@ -299,6 +313,7 @@ body {
 .lanthanides {
     grid-row: 9;
 }
+
 .actinides {
     grid-row:10;
 }
@@ -378,12 +393,12 @@ body {
 
 .alert-box input[type=text]:focus {
     border: 3px solid #555;
-  }
+}
 
   .alert-box label {
     padding: 12px;
     font-weight: 700;
-  }
+}
 
 .alert-box > h3 {
     width:100%;
@@ -399,8 +414,8 @@ body {
     text-align: left;
     padding: 10px 0;
     box-sizing: border-box;
-    
 }
+
 .alert-box > p {
     width: 100%;
     text-align: left;
@@ -413,9 +428,11 @@ body {
     color: red;
     text-decoration: none;
 }
+
 .alert-box a:visited {
     color: red;
 }
+
 .alert-box i {
     font-size: 2em;
     padding: 0 5px;
@@ -453,6 +470,7 @@ body {
     position: fixed;
     top: 26%;
 }
+
  .overlay > h1 {
     text-align: center;
     font-weight: 600;
@@ -462,7 +480,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 0 20px;
- }
+}
 
  .overlay > h2 {
     text-align: center;
@@ -473,12 +491,13 @@ body {
     box-sizing: border-box;
     padding: 0 20px;
     font-size: 1.2em;
- }
+}
 
 @media only screen and (max-width: 1024px){
     .game-area{
         margin-top: 5%;
     }
+
     .periodic-table {
         grid-template-rows: repeat(7, 55px) 20px 55px 55px;
         grid-template-columns: repeat(18, 50px);
@@ -491,7 +510,6 @@ body {
         height: 55px;
         font-size: 1.2em;
     }
-    
     
     .element-tile p {
         height: 54px;
@@ -532,6 +550,7 @@ body {
     bottom: calc(50% + 30px);
     left: 1px;
     }
+
     .score-area > p {
         font-size: 1.5em;
     }
@@ -540,6 +559,7 @@ body {
     .game-area{
         margin-top: 0;
     }
+
     .periodic-table {
         grid-template-rows: repeat(7, 35px) 4px 35px 35px;
         grid-template-columns: repeat(18, 35px);
@@ -553,7 +573,6 @@ body {
         height: 35px;
         font-size: 0.9em;
     }
-    
     
     .element-tile p {
         height: 34px;
@@ -578,6 +597,7 @@ body {
         top: -88px;
         max-height: 100px;
     }
+
     .controls-area {
         display: inline-flex;
         flex-direction: column;
@@ -618,6 +638,7 @@ body {
         top: calc(50% - 55px);
         left: 1px;
     }
+
     .score-area > p {
         font-size: 0.7em;
         font-weight: 700;
@@ -703,7 +724,6 @@ body {
         width: 100px;
         font-size: 0.8em;
         margin-bottom: 10px;
-
     }
 
     .periodic-table{
@@ -713,6 +733,7 @@ body {
     padding: 2px 7px 5px 3px;
     border-radius: 5px;
     }
+
     .score-area > p {
         font-size: 0.65em;
     }
@@ -745,6 +766,7 @@ body {
     .btn{
         width: 73px;
     } 
+    
     .periodic-table{
     grid-template-rows: repeat(7, 33px) 4px 33px 33px;
     grid-template-columns: repeat(18, 33px);
