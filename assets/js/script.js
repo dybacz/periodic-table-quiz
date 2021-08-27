@@ -405,7 +405,6 @@ function closeFullScreen() {
             let currentAlert = document.getElementsByClassName('overlay');
             if (currentAlert.length > 0) {
                 currentAlert[0].remove();
-                window.scrollTo(0,1);
             }
             return;
         }
