@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded",function () {
         button.addEventListener("click", afterClickButtons, true);
     }
 
-    let toolbars = document.getElementsByClassName("toolbar-btn")
+    let toolbars = document.getElementsByClassName("toolbar-btn");
     for (let toolbar of toolbars) {
         toolbar.addEventListener("click", afterClickButtons, true);
     }
@@ -210,7 +210,7 @@ function moreLives () {
     let currentScore = parseInt(document.getElementById('score').innerText);
 
     if (currentScore > 1) {
-        alertBox("Lives +1 ", "", "green")
+        alertBox("Lives +1 ", "", "green");
         document.getElementById("score").innerText = currentScore - 2;
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
@@ -294,7 +294,7 @@ function closeAlertNewGame() {
         currentAlert[0].parentNode.removeChild(currentAlert[0]);
         styleSheet.deleteRule(styleSheetEnd);
         newGame(playerName);
-    };
+    }
 }
 
 function closeAlert() {
@@ -385,9 +385,9 @@ function closeFullScreen() {
     }
 
     function screenSizeListner () {
-        let screenSize = window.matchMedia("(max-width: 639px)")
+        let screenSize = window.matchMedia("(max-width: 639px)");
         screenSize.addListener(rotateScreenAlert); // Attach listener function on state changes
-        rotateScreenAlert(screenSize)
+        rotateScreenAlert(screenSize);
     }
 
     function rotateScreenAlert(screenSize) {
@@ -403,13 +403,8 @@ function closeFullScreen() {
         } else {
             let currentAlert = document.getElementsByClassName('overlay');
             if (currentAlert.length > 0) {
-                currentAlert[0].remove()
+                currentAlert[0].remove();
             }
             return;
         }
     }
-      
-     
-      
-      
-      
