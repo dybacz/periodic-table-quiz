@@ -358,14 +358,13 @@ function openHelp() {
     let helpText = `
     <h3>How to play:</h3>
 
-    <p>Your task is to reveal all the elements in the periodic table and score as many points as possible.</p>
+    <p>You must reassemble the Periodic Table from memory and score as many points as possible.</p>
     <ul>
-        <li>Click/Touch where you think that element belongs?</li><br>
-        <li>If you are correct you will be rewarded 1 point!</li><br>
-        <li>If you are incorrect you will lose a life.</li><br>
+        <li>Can you guess the correct position for each of the elements?</li><br>
+        <li>Each correct guess will earn you a point!</li><br>
+        <li>Each incorrect guess will cost you a life!</li><br>
     </ul>
-    <p>Can you remember where every element is on the periodic table?</p><br>
-    <p>TIP: Extra Life costs 2 points!</p><br>
+    <p>TIP: Extra Life costs 2 points!</p>
     If playing on mobile, use Fullscreen mode.<br>
     Good Luck!
     `;

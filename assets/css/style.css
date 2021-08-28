@@ -416,6 +416,10 @@ body {
     box-sizing: border-box;
 }
 
+.alert-box ul li {
+    line-height: 16px;
+}
+
 .alert-box > p {
     width: 100%;
     text-align: left;
