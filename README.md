@@ -89,6 +89,12 @@ __The Buttons__
 
 ![Does not fit alert](assets/images/readme/does_not_fit_alert.png)
 
+- __The Quiz Completed Alert__
+
+  - When a user completed the quiz this alert is displayed containing the users name.
+
+![Quiz Completed Alert](assets/images/readme/quiz_completed.png)
+
 ### Features Left to Implement
 
 - __Variable Quiz Length__
@@ -143,5 +149,6 @@ The live link can be found here - https://dybacz.github.io/periodic-table-quiz/
 
 ### Media
 
-- The image used for the favicon and username input textbox are from [Icons-icons](https://icon-icons.com/icon/atom-sciencie-scientific/53030).
-- The image used for the 'This content does not fit' alert are from [Iconefinder](https://www.iconfinder.com/icons/326583/orientation_rotation_screen_icon)
+- The image used for the favicon and username input textbox is from [Icons-icons](https://icon-icons.com/icon/atom-sciencie-scientific/53030).
+- The image used for the 'This content does not fit' alert is from [Iconefinder](https://www.iconfinder.com/icons/326583/orientation_rotation_screen_icon)
+- The image used for the Quiz Complete Alert is from [unDraw](https://undraw.co/illustrations)
