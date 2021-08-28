@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded",function () {
     for (let toolbar of toolbars) {
         toolbar.addEventListener("click", afterClickButtons, true);
     }
+
     alertBoxNewGame("Welcome");
     screenSizeListner(); // Call listener function at run time
-
 });
 
 /**
@@ -173,6 +173,7 @@ function revealElement (clickedElement) {
     clickedElement.innerHTML = `<p class="text-symbol" data-element-symbol="${eleSym}"></p>`;
     clearAnswer();
 }
+
 /**
  * Removes top line in shuffled array of elements.
  */
@@ -271,6 +272,7 @@ function gameOver () {
  * Creates a general alert box and underlay in new div at index [0] of DOM body
  */
 function alertBox (alertTitle, alertMessage, colour) {
+    
     let createBox = document.createElement('div');
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length;
@@ -283,6 +285,7 @@ function alertBox (alertTitle, alertMessage, colour) {
                                 </button>
                             </div>`;
     createBox.classList.add('underlay'); 
+
     let parent = document.getElementsByClassName("game-area")[0].parentNode;
     parent.insertBefore(createBox, parent.childNodes[0]);
     document.getElementsByClassName('btn--close')[0].addEventListener("click", closeAlert);
@@ -293,8 +296,8 @@ function alertBox (alertTitle, alertMessage, colour) {
  * Creates New game alert box containg text input field for user name and underlay in new div at index [0] of DOM body
  */
 function alertBoxNewGame (alertTitle) {
-    
     let createBox = document.createElement('div');
+    let parent = document.getElementsByClassName("game-area")[0].parentNode;
     createBox.innerHTML = `<div class="alert-box">
                                 <h1 style="background-color:green ; width:100%; color:white; padding: 5px 0; border-radius: 5px; font-size: 1.5em; letter-spacing: 1px;">${alertTitle}</h1>
                                 <br><p style="text-align:center;">Can you reassemble the periodic table?</p>
@@ -306,8 +309,8 @@ function alertBoxNewGame (alertTitle) {
                                 </button>
                             </div>`;
     createBox.classList.add('underlay'); 
-    let parent = document.getElementsByClassName("game-area")[0].parentNode;
     parent.insertBefore(createBox, parent.childNodes[0]);
+
     document.getElementsByClassName('btn--close')[0].addEventListener("click", closeAlertNewGame);
     document.getElementById('user-name').onkeypress = function(event){
         let key = event.keyCode;
@@ -341,6 +344,7 @@ function closeAlert() {
     document.getElementsByClassName('btn--close')[0].removeEventListener("click", closeAlert);
     let currentAlert = document.getElementsByClassName('underlay');
     currentAlert[0].parentNode.removeChild(currentAlert[0]);
+
     let styleSheet = document.styleSheets[0];
     let styleSheetEnd = styleSheet.cssRules.length - 6;
     styleSheet.deleteRule(styleSheetEnd);
@@ -456,7 +460,6 @@ function screenSizeListner () {
  * If screen size changes to not match, alert removed.
  */
 function rotateScreenAlert(screenSize) {
-    
     if (screenSize.matches) { // If media query matches
         let createBox = document.createElement('div');
         createBox.innerHTML = `<h1>This content does not fit</h1>
