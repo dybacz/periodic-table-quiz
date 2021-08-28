@@ -395,7 +395,7 @@ body {
     border: 3px solid #555;
 }
 
-  .alert-box label {
+.alert-box label {
     padding: 12px;
     font-weight: 700;
 }
@@ -766,7 +766,7 @@ body {
     .btn{
         width: 73px;
     } 
-    
+
     .periodic-table{
     grid-template-rows: repeat(7, 33px) 4px 33px 33px;
     grid-template-columns: repeat(18, 33px);
