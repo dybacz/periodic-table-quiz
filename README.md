@@ -73,6 +73,8 @@ __The Buttons__
 
 ![Error Lives Alert](assets/images/readme/error_lives_alert.png)
 
+![Error Lives Alert 2](assets/images/readme/error_lives_alert_2.png)
+
 - __The New Game Alert__
 
   - Start a new game by requiring the user to enter there name.

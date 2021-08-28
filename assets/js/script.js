@@ -243,11 +243,11 @@ function moreLives () {
         document.getElementById("lives").innerText = ++currentLives;
     } else if (currentScore === 1) {
         alertBox("Error", `<br>
-                            You are unable to buy more lives,<br> you have only ${currentScore} point to spend
+                            You are unable to buy more lives<br> ${currentScore} point to spend
                             <br>`, "red");
     }  else {
         alertBox("Error", `<br>
-                            You are unable to buy more lives,<br> you have ${currentScore} points to spend
+                            You are unable to buy more lives<br> ${currentScore} points to spend
                             <br>`, "red");
     }
 }
